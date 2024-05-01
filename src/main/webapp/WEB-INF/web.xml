@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app>
+	<display-name>formulario con servlets</display-name>
+	<description>
+		Pagina parque diversiones
+	</description>
+	<distributable></distributable>
+	<servlet>
+		<servlet-name>ServletGuardar</servlet-name>
+		<servlet-class>controller.ServletGuardar</servlet-class>
+	</servlet>
+	
+		<servlet>
+		<servlet-name>ServletListar</servlet-name>
+		<servlet-class>controller.ServletListar</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>ServletAdmin</servlet-name>
+		<servlet-class>controller.ServletAdmin</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>ServletTabla</servlet-name>
+		<servlet-class>controller.ServletTabla</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>ServletAdmin</servlet-name>
+		<url-pattern>/admin</url-pattern>
+	</servlet-mapping>
+	
+		<servlet-mapping>
+		<servlet-name>ServletListar</servlet-name>
+		<url-pattern>/listar</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>ServletTabla</servlet-name>
+		<url-pattern>/tabla</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>ServletGuardar</servlet-name>
+		<url-pattern>/guardado</url-pattern>
+	</servlet-mapping>
+</web-app>
