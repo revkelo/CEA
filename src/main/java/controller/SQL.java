@@ -25,7 +25,7 @@ public class SQL {
             String pass = "";
             //Se inicia la conexión
             conexion = DriverManager.getConnection(servidor, usuario, pass);
-            JOptionPane.showMessageDialog(null, "MYSQL Conexión Exitosa");
+            System.out.println( "MYSQL Conexión Exitosa");
         } catch (ClassNotFoundException ex) {
             JOptionPane.showMessageDialog(null, ex, "Error en la conexión a la base de datos: " + ex.getMessage(), JOptionPane.ERROR_MESSAGE);
             conexion = null;
@@ -36,6 +36,32 @@ public class SQL {
             JOptionPane.showMessageDialog(null, ex, "Error en la conexión a la base de datos: " + ex.getMessage(), JOptionPane.ERROR_MESSAGE);
             conexion = null;
         }
-		return conexion;
+        return conexion;
     }
+    
+    public void imprimirPersonas() {
+        try {
+            if (conexion != null) {
+                comando = conexion.createStatement();
+                registro = comando.executeQuery("SELECT * FROM Persona");
+
+                while (registro.next()) {
+                    int id = registro.getInt("id");
+                    String nombre = registro.getString("nombre");
+                 
+
+                    System.out.println("ID: " + id + ", Nombre: " + nombre );
+                }
+
+                registro.close();
+                comando.close();
+            } else {
+                System.out.println("No se puede imprimir. No hay conexión establecida.");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+
 }
