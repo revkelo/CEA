@@ -6,13 +6,13 @@
 	</description>
 	<distributable></distributable>
 	<servlet>
-		<servlet-name>ServletGuardar</servlet-name>
-		<servlet-class>controller.ServletGuardar</servlet-class>
+		<servlet-name>ServletAdmin</servlet-name>
+		<servlet-class>controller.ServletAdmin</servlet-class>
 	</servlet>
 	
 
 	<servlet-mapping>
-		<servlet-name>ServletGuardar</servlet-name>
-		<url-pattern>/guardado</url-pattern>
+		<servlet-name>ServletAdmin</servlet-name>
+		<url-pattern>/admin</url-pattern>
 	</servlet-mapping>
 </web-app>
