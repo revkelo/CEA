@@ -32,8 +32,8 @@ function crearInstructor(event) {
 	})
 		.then(response => {
 			if (response.ok) {
-				alert('Instructor creado exitosamente');
-				// Puedes agregar aquí cualquier lógica adicional después de crear el instructor
+				alert('Instructor creado exitosamente'); resetForms();
+				resetForms();
 			} else {
 				throw new Error('Error al crear el instructor');
 			}
@@ -73,8 +73,8 @@ function actualizarInstructor(event) {
 	})
 		.then(response => {
 			if (response.ok) {
-				alert('Instructor actualizado exitosamente');
-				// Puedes agregar aquí cualquier lógica adicional después de actualizar el instructor
+				alert('Instructor actualizado exitosamente'); resetForms();
+				resetForms();
 			} else {
 				throw new Error('Error al actualizar el instructor');
 			}
@@ -100,8 +100,8 @@ function eliminarInstructor(event) {
 	})
 		.then(response => {
 			if (response.ok) {
-				alert('Instructor eliminado exitosamente');
-				// Puedes agregar aquí cualquier lógica adicional después de eliminar el instructor
+				alert('Instructor eliminado exitosamente'); resetForms();
+				resetForms();
 			} else {
 				throw new Error('Error al eliminar el instructor');
 			}
@@ -141,8 +141,8 @@ function crearClasePractica(event) {
 	})
 		.then(response => {
 			if (response.ok) {
-				alert('Clase práctica creada exitosamente');
-				// Puedes agregar aquí cualquier lógica adicional después de crear la clase práctica
+				alert('Clase práctica creada exitosamente'); resetForms();
+				resetForms();
 			} else {
 				throw new Error('Error al crear la clase práctica');
 			}
@@ -182,8 +182,8 @@ function actualizarClasePractica(event) {
 	})
 		.then(response => {
 			if (response.ok) {
-				alert('Clase práctica actualizada exitosamente');
-				// Puedes agregar aquí cualquier lógica adicional después de actualizar la clase práctica
+				alert('Clase práctica actualizada exitosamente'); resetForms();
+				resetForms();
 			} else {
 				throw new Error('Error al actualizar la clase práctica');
 			}
@@ -209,8 +209,8 @@ function eliminarClasePractica(event) {
 	})
 		.then(response => {
 			if (response.ok) {
-				alert('Clase práctica eliminada exitosamente');
-				// Puedes agregar aquí cualquier lógica adicional después de eliminar la clase práctica
+				alert('Clase práctica eliminada exitosamente'); resetForms();
+				resetForms();
 			} else {
 				throw new Error('Error al eliminar la clase práctica');
 			}
@@ -251,7 +251,8 @@ function crearVehiculo(event) {
 	})
 		.then(response => {
 			if (response.ok) {
-				alert('Vehículo creado exitosamente');
+				alert('Vehículo creado exitosamente'); resetForms();
+				resetForms();
 			} else {
 				throw new Error('Error al crear el vehículo');
 			}
@@ -293,7 +294,8 @@ function actualizarVehiculo(event) {
 	})
 		.then(response => {
 			if (response.ok) {
-				alert('Vehículo actualizado exitosamente');
+				alert('Vehículo actualizado exitosamente'); resetForms();
+				resetForms();
 			} else {
 				throw new Error('Error al actualizar el vehículo');
 			}
@@ -317,7 +319,8 @@ function eliminarVehiculo(event) {
 	})
 		.then(response => {
 			if (response.ok) {
-				alert('Vehículo eliminado exitosamente');
+				alert('Vehículo eliminado exitosamente'); resetForms();
+				resetForms();
 			} else {
 				throw new Error('Error al eliminar el vehículo');
 			}
@@ -353,7 +356,8 @@ function crearCategoria(event) {
 	})
 		.then(response => {
 			if (response.ok) {
-				alert('Categoría creada exitosamente');
+				alert('Categoría creada exitosamente'); resetForms();
+				resetForms();
 			} else {
 				throw new Error('Error al crear la categoría');
 			}
@@ -391,7 +395,8 @@ function actualizarCategoria(event) {
 	})
 		.then(response => {
 			if (response.ok) {
-				alert('Categoría actualizada exitosamente');
+				alert('Categoría actualizada exitosamente'); resetForms();
+				resetForms();
 			} else {
 				throw new Error('Error al actualizar la categoría');
 			}
@@ -415,7 +420,8 @@ function eliminarCategoria(event) {
 	})
 		.then(response => {
 			if (response.ok) {
-				alert('Categoría eliminada exitosamente');
+				alert('Categoría eliminada exitosamente'); resetForms();
+				resetForms();
 			} else {
 				throw new Error('Error al eliminar la categoría');
 			}
@@ -453,7 +459,8 @@ function crearExamenPractico(event) {
 	})
 		.then(response => {
 			if (response.ok) {
-				alert('Examen práctico creado exitosamente');
+				alert('Examen práctico creado exitosamente'); resetForms();
+				resetForms();
 			} else {
 				throw new Error('Error al crear el examen práctico');
 			}
@@ -491,7 +498,8 @@ function actualizarExamenPractico(event) {
 	})
 		.then(response => {
 			if (response.ok) {
-				alert('Examen práctico actualizado exitosamente');
+				alert('Examen práctico actualizado exitosamente'); resetForms();
+				resetForms();
 			} else {
 				throw new Error('Error al actualizar el examen práctico');
 			}
@@ -515,7 +523,8 @@ function eliminarExamenPractico(event) {
 	})
 		.then(response => {
 			if (response.ok) {
-				alert('Examen práctico eliminado exitosamente');
+				alert('Examen práctico eliminado exitosamente'); resetForms();
+				resetForms();
 			} else {
 				throw new Error('Error al eliminar el examen práctico');
 			}
@@ -550,7 +559,8 @@ function crearClaseTeorica(event) {
 	})
 		.then(response => {
 			if (response.ok) {
-				alert('Clase teórica creada exitosamente');
+				alert('Clase teórica creada exitosamente'); resetForms();
+				resetForms();
 			} else {
 				throw new Error('Error al crear la clase teórica');
 			}
@@ -586,7 +596,8 @@ function actualizarClaseTeorica(event) {
 	})
 		.then(response => {
 			if (response.ok) {
-				alert('Clase teórica actualizada exitosamente');
+				alert('Clase teórica actualizada exitosamente'); resetForms();
+				resetForms();
 			} else {
 				throw new Error('Error al actualizar la clase teórica');
 			}
@@ -610,7 +621,8 @@ function eliminarClaseTeorica(event) {
 	})
 		.then(response => {
 			if (response.ok) {
-				alert('Clase teórica eliminada exitosamente');
+				alert('Clase teórica eliminada exitosamente'); resetForms();
+				resetForms();
 			} else {
 				throw new Error('Error al eliminar la clase teórica');
 			}
@@ -647,7 +659,7 @@ function crearMatriculado(event) {
 	})
 		.then(response => {
 			if (response.ok) {
-				alert('Matriculado creado exitosamente');
+				alert('Matriculado creado exitosamente'); resetForms();
 			} else {
 				throw new Error('Error al crear el matriculado');
 			}
@@ -685,7 +697,7 @@ function actualizarMatriculado(event) {
 	})
 		.then(response => {
 			if (response.ok) {
-				alert('Matriculado actualizado exitosamente');
+				alert('Matriculado actualizado exitosamente'); resetForms();
 			} else {
 				throw new Error('Error al actualizar el matriculado');
 			}
@@ -709,7 +721,7 @@ function eliminarMatriculado(event) {
 	})
 		.then(response => {
 			if (response.ok) {
-				alert('Matriculado eliminado exitosamente');
+				alert('Matriculado eliminado exitosamente'); resetForms();
 			} else {
 				throw new Error('Error al eliminar el matriculado');
 			}
@@ -747,7 +759,7 @@ function crearCliente(event) {
 	})
 		.then(response => {
 			if (response.ok) {
-				alert('Cliente creado exitosamente');
+				alert('Cliente creado exitosamente'); resetForms();
 			} else {
 				throw new Error('Error al crear el cliente');
 			}
@@ -787,7 +799,7 @@ function actualizarCliente(event) {
 	})
 		.then(response => {
 			if (response.ok) {
-				alert('Cliente actualizado exitosamente');
+				alert('Cliente actualizado exitosamente'); resetForms();
 			} else {
 				throw new Error('Error al actualizar el cliente');
 			}
@@ -811,7 +823,7 @@ function eliminarCliente(event) {
 	})
 		.then(response => {
 			if (response.ok) {
-				alert('Cliente eliminado exitosamente');
+				alert('Cliente eliminado exitosamente'); resetForms();
 			} else {
 				throw new Error('Error al eliminar el cliente');
 			}
