@@ -1,15 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Login</title>
-  <link rel="stylesheet" href="./style.css">
-
+  <link rel="stylesheet" href="./css/login.css">
 </head>
 <body>
 
-<!-- partial:index.partial.html -->
-<form autocomplete='off' class='form'>
+<form autocomplete='off' class='form' id="loginForm">
   <div class='control'>
     <h1>
       Login
@@ -39,7 +37,7 @@
       <div class='bg-inner'></div>
     </div>
   </div>
-  <button class='btn block-cube block-cube-hover' type="submit" >
+  <button class='btn block-cube block-cube-hover' type="submit">
     <div class='bg-top'>
       <div class='bg-inner'></div>
     </div>
@@ -49,13 +47,18 @@
     <div class='bg'>
       <div class='bg-inner'></div>
     </div>
-    <div  class='text'>
+    <div class='text'>
       Iniciar Sesión
     </div>
   </button>
-
 </form>
 
-  
+<script>
+  document.getElementById('loginForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Evita el envío del formulario
+    window.location.href = 'cruds.html'; // Redirige a cruds.html
+  });
+</script>
+
 </body>
 </html>
