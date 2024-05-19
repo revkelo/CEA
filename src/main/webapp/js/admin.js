@@ -4,7 +4,6 @@ function resetForms() {
 }
 
 
-// Función para crear un instructor
 function crearInstructor(event) {
 	event.preventDefault();
 
@@ -13,26 +12,20 @@ function crearInstructor(event) {
 	var correo = document.getElementById('correoInstructorCrear').value;
 	var telefono = document.getElementById('telefonoInstructorCrear').value;
 
-	// Realizar una solicitud POST a la API para crear un nuevo instructor
-	// Aquí deberías especificar la URL correcta de tu API
 	var url = 'http://localhost:8081/api/instructores';
-	var data = {
-		nombre: nombre,
-		apellido: apellido,
-		correo: correo,
-		telefono: telefono
-	};
+	var params = new URLSearchParams();
+	params.append('nombre', nombre);
+	params.append('apellido', apellido);
+	params.append('correo', correo);
+	params.append('telefono', telefono);
 
 	fetch(url, {
 		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify(data)
+		body: params
 	})
 		.then(response => {
 			if (response.ok) {
-				alert('Instructor creado exitosamente'); resetForms();
+				alert('Instructor creado exitosamente');
 				resetForms();
 			} else {
 				throw new Error('Error al crear el instructor');
@@ -113,7 +106,6 @@ function eliminarInstructor(event) {
 }
 
 
-// Función para crear una clase práctica
 function crearClasePractica(event) {
 	event.preventDefault();
 
@@ -122,26 +114,20 @@ function crearClasePractica(event) {
 	var matriculadoId = document.getElementById('matriculadoCrear').value;
 	var descripcion = document.getElementById('descripcionCrear').value;
 
-	// Realizar una solicitud POST a la API para crear una nueva clase práctica
-	// Aquí deberías especificar la URL correcta de tu API
 	var url = 'http://localhost:8081/api/clasesPracticas';
-	var data = {
-		instructorId: instructorId,
-		vehiculoId: vehiculoId,
-		matriculadoId: matriculadoId,
-		descripcion: descripcion
-	};
+	var params = new URLSearchParams();
+	params.append('instructorId', instructorId);
+	params.append('vehiculoId', vehiculoId);
+	params.append('matriculadoId', matriculadoId);
+	params.append('descripcion', descripcion);
 
 	fetch(url, {
 		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify(data)
+		body: params
 	})
 		.then(response => {
 			if (response.ok) {
-				alert('Clase práctica creada exitosamente'); resetForms();
+				alert('Clase práctica creada exitosamente');
 				resetForms();
 			} else {
 				throw new Error('Error al crear la clase práctica');
@@ -152,6 +138,7 @@ function crearClasePractica(event) {
 			alert('Error al crear la clase práctica');
 		});
 }
+
 
 // Función para actualizar una clase práctica
 function actualizarClasePractica(event) {
@@ -221,7 +208,6 @@ function eliminarClasePractica(event) {
 		});
 }
 
-// Función para crear un vehículo
 function crearVehiculo(event) {
 	event.preventDefault();
 
@@ -233,25 +219,21 @@ function crearVehiculo(event) {
 	var disponibilidad = document.getElementById('disponibilidadCrear').value;
 
 	var url = 'http://localhost:8081/api/vehiculos';
-	var data = {
-		placa: placa,
-		modelo: modelo,
-		tipoVehiculo: tipoVehiculo,
-		marca: marca,
-		nivelVehiculo: nivelVehiculo,
-		disponibilidad: disponibilidad
-	};
+	var params = new URLSearchParams();
+	params.append('placa', placa);
+	params.append('modelo', modelo);
+	params.append('tipoVehiculo', tipoVehiculo);
+	params.append('marca', marca);
+	params.append('nivelVehiculo', nivelVehiculo);
+	params.append('disponibilidad', disponibilidad);
 
 	fetch(url, {
 		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify(data)
+		body: params
 	})
 		.then(response => {
 			if (response.ok) {
-				alert('Vehículo creado exitosamente'); resetForms();
+				alert('Vehículo creado exitosamente');
 				resetForms();
 			} else {
 				throw new Error('Error al crear el vehículo');
@@ -262,6 +244,7 @@ function crearVehiculo(event) {
 			alert('Error al crear el vehículo');
 		});
 }
+
 
 // Función para actualizar un vehículo
 function actualizarVehiculo(event) {
@@ -340,23 +323,19 @@ function crearCategoria(event) {
 	var nombreCategoria = document.getElementById('nombreCategoriaCrear').value;
 
 	var url = 'http://localhost:8081/api/categorias';
-	var data = {
-		precio: precio,
-		horasTeoricas: horasTeoricas,
-		horasPracticas: horasPracticas,
-		nombreCategoria: nombreCategoria
-	};
+	var params = new URLSearchParams();
+	params.append('precio', precio);
+	params.append('horasTeoricas', horasTeoricas);
+	params.append('horasPracticas', horasPracticas);
+	params.append('nombreCategoria', nombreCategoria);
 
 	fetch(url, {
 		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify(data)
+		body: params
 	})
 		.then(response => {
 			if (response.ok) {
-				alert('Categoría creada exitosamente'); resetForms();
+				alert('Categoría creada exitosamente');
 				resetForms();
 			} else {
 				throw new Error('Error al crear la categoría');
@@ -367,6 +346,7 @@ function crearCategoria(event) {
 			alert('Error al crear la categoría');
 		});
 }
+
 
 // Función para actualizar una categoría
 function actualizarCategoria(event) {
@@ -443,23 +423,19 @@ function crearExamenPractico(event) {
 	var resultado = document.getElementById('resultadoCrear').value;
 
 	var url = 'http://localhost:8081/api/examenes-practicos';
-	var data = {
-		matriculado: matriculado,
-		instructor: instructor,
-		vehiculo: vehiculo,
-		resultado: resultado
-	};
+	var params = new URLSearchParams();
+	params.append('matriculado', matriculado);
+	params.append('instructor', instructor);
+	params.append('vehiculo', vehiculo);
+	params.append('resultado', resultado);
 
 	fetch(url, {
 		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify(data)
+		body: params
 	})
 		.then(response => {
 			if (response.ok) {
-				alert('Examen práctico creado exitosamente'); resetForms();
+				alert('Examen práctico creado exitosamente');
 				resetForms();
 			} else {
 				throw new Error('Error al crear el examen práctico');
@@ -470,6 +446,7 @@ function crearExamenPractico(event) {
 			alert('Error al crear el examen práctico');
 		});
 }
+
 
 // Función para actualizar un examen práctico
 function actualizarExamenPractico(event) {
@@ -544,22 +521,18 @@ function crearClaseTeorica(event) {
 	var descripcion = document.getElementById('descripcionCrear').value;
 
 	var url = 'http://localhost:8081/api/clases-teoricas';
-	var data = {
-		instructor: instructor,
-		matriculado: matriculado,
-		descripcion: descripcion
-	};
+	var params = new URLSearchParams();
+	params.append('instructor', instructor);
+	params.append('matriculado', matriculado);
+	params.append('descripcion', descripcion);
 
 	fetch(url, {
 		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify(data)
+		body: params
 	})
 		.then(response => {
 			if (response.ok) {
-				alert('Clase teórica creada exitosamente'); resetForms();
+				alert('Clase teórica creada exitosamente');
 				resetForms();
 			} else {
 				throw new Error('Error al crear la clase teórica');
@@ -570,6 +543,7 @@ function crearClaseTeorica(event) {
 			alert('Error al crear la clase teórica');
 		});
 }
+
 
 // Función para actualizar una clase teórica
 function actualizarClaseTeorica(event) {
@@ -633,7 +607,6 @@ function eliminarClaseTeorica(event) {
 		});
 }
 
-// Función para crear un matriculado
 function crearMatriculado(event) {
 	event.preventDefault();
 
@@ -643,23 +616,20 @@ function crearMatriculado(event) {
 	var fechaFin = document.getElementById('fechaFinCrear').value;
 
 	var url = 'http://localhost:8081/api/matriculados';
-	var data = {
-		cliente: cliente,
-		categoria: categoria,
-		fechaInicio: fechaInicio,
-		fechaFin: fechaFin
-	};
+	var params = new URLSearchParams();
+	params.append('cliente', cliente);
+	params.append('categoria', categoria);
+	params.append('fechaInicio', fechaInicio);
+	params.append('fechaFin', fechaFin);
 
 	fetch(url, {
 		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify(data)
+		body: params
 	})
 		.then(response => {
 			if (response.ok) {
-				alert('Matriculado creado exitosamente'); resetForms();
+				alert('Matriculado creado exitosamente');
+				resetForms();
 			} else {
 				throw new Error('Error al crear el matriculado');
 			}
@@ -669,6 +639,7 @@ function crearMatriculado(event) {
 			alert('Error al crear el matriculado');
 		});
 }
+
 
 // Función para actualizar un matriculado
 function actualizarMatriculado(event) {
@@ -731,7 +702,6 @@ function eliminarMatriculado(event) {
 			alert('Error al eliminar el matriculado');
 		});
 }
-// Función para crear un cliente
 function crearCliente(event) {
 	event.preventDefault();
 
@@ -741,28 +711,29 @@ function crearCliente(event) {
 	var correo = document.getElementById('correoCrear').value;
 	var cedula = document.getElementById('cedulaCrear').value;
 
-	var url = 'http://localhost:8081/api/clientes';
-	var data = {
-		nombre: nombre,
-		apellido: apellido,
-		telefono: telefono,
-		correo: correo,
-		cedula: cedula
-	};
+	var url = 'http://localhost:8081/sql/cliente'; // Corregido el nombre de la ruta
+	var params = new URLSearchParams();
+	params.append('nombre', nombre);
+	params.append('apellido', apellido);
+	params.append('telefono', telefono);
+	params.append('correo', correo);
+	params.append('cedula', cedula);
 
 	fetch(url, {
 		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify(data)
+		body: params
 	})
 		.then(response => {
 			if (response.ok) {
-				alert('Cliente creado exitosamente'); resetForms();
+				return response.text();
 			} else {
-				throw new Error('Error al crear el cliente');
+				throw new Error('Error en la solicitud');
 			}
+		})
+		.then(data => {
+			console.log(data);
+			alert('Cliente creado exitosamente');
+			resetForms();
 		})
 		.catch(error => {
 			console.error('Error:', error);
@@ -770,66 +741,72 @@ function crearCliente(event) {
 		});
 }
 
-// Función para actualizar un cliente
 function actualizarCliente(event) {
-	event.preventDefault();
+    event.preventDefault();
 
-	var idCliente = document.getElementById('idClienteActualizar').value;
-	var nombre = document.getElementById('nombreActualizar').value;
-	var apellido = document.getElementById('apellidoActualizar').value;
-	var telefono = document.getElementById('telefonoActualizar').value;
-	var correo = document.getElementById('correoActualizar').value;
-	var cedula = document.getElementById('cedulaActualizar').value;
+    var idCliente = document.getElementById('idClienteActualizar').value;
+    var nombre = document.getElementById('nombreActualizar').value;
+    var apellido = document.getElementById('apellidoActualizar').value;
+    var telefono = document.getElementById('telefonoActualizar').value;
+    var correo = document.getElementById('correoActualizar').value;
+    var cedula = document.getElementById('cedulaActualizar').value;
 
-	var url = 'http://localhost:8081/api/clientes/' + idCliente;
-	var data = {
-		nombre: nombre,
-		apellido: apellido,
-		telefono: telefono,
-		correo: correo,
-		cedula: cedula
-	};
+    var url = 'http://localhost:8081/sql/cliente/' + idCliente;
+    var params = new URLSearchParams();
+    params.append('nombre', nombre);
+    params.append('apellido', apellido);
+    params.append('telefono', telefono);
+    params.append('correo', correo);
+    params.append('cedula', cedula);
 
-	fetch(url, {
-		method: 'PUT',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify(data)
-	})
-		.then(response => {
-			if (response.ok) {
-				alert('Cliente actualizado exitosamente'); resetForms();
-			} else {
-				throw new Error('Error al actualizar el cliente');
-			}
-		})
-		.catch(error => {
-			console.error('Error:', error);
-			alert('Error al actualizar el cliente');
-		});
+    fetch(url, {
+        method: 'PUT',
+        body: params
+    })
+        .then(response => {
+            if (response.ok) {
+                return response.text(); // Convertir la respuesta a texto
+            } else {
+                throw new Error('Error al actualizar el cliente');
+            }
+        })
+        .then(data => {
+            alert(data); 
+   
+            resetForms();
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error al actualizar el cliente');
+        });
 }
 
-// Función para eliminar un cliente
+
+
 function eliminarCliente(event) {
 	event.preventDefault();
 
 	var idCliente = document.getElementById('idClienteEliminar').value;
 
-	var url = 'http://localhost:8081/api/clientes/' + idCliente;
+	var url = 'http://localhost:8081/sql/cliente/' + idCliente;
 
 	fetch(url, {
 		method: 'DELETE'
 	})
 		.then(response => {
 			if (response.ok) {
-				alert('Cliente eliminado exitosamente'); resetForms();
+				return response.text(); // Convierte la respuesta a texto
 			} else {
 				throw new Error('Error al eliminar el cliente');
 			}
+		})
+		.then(data => {
+			alert(data);
+			resetForms();
 		})
 		.catch(error => {
 			console.error('Error:', error);
 			alert('Error al eliminar el cliente');
 		});
 }
+
