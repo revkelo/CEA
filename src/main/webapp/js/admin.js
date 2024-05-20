@@ -234,6 +234,7 @@ function eliminarClasePractica(event) {
 function crearVehiculo(event) {
 	event.preventDefault();
 
+	// Collect form data
 	var placa = document.getElementById('placaCrear').value;
 	var modelo = document.getElementById('modeloCrear').value;
 	var tipoVehiculo = document.getElementById('tipoVehiculoCrear').value;
@@ -241,48 +242,8 @@ function crearVehiculo(event) {
 	var nivelVehiculo = document.getElementById('nivelVehiculoCrear').value;
 	var disponibilidad = document.getElementById('disponibilidadCrear').value;
 
-	var url = 'http://localhost:8081/vehiculos';
-	var params = new URLSearchParams();
-	params.append('placa', placa);
-	params.append('modelo', modelo);
-	params.append('tipoVehiculo', tipoVehiculo);
-	params.append('marca', marca);
-	params.append('nivelVehiculo', nivelVehiculo);
-	params.append('disponibilidad', disponibilidad);
-
-	fetch(url, {
-		method: 'POST',
-		body: params
-	})
-		.then(response => {
-			if (response.ok) {
-				alert('Vehículo creado exitosamente');
-				resetForms();
-			} else {
-				throw new Error('Error al crear el vehículo');
-			}
-		})
-		.catch(error => {
-			console.error('Error:', error);
-			alert('Error al crear el vehículo');
-		});
-}
-
-
-// Función para actualizar un vehículo
-function actualizarVehiculo(event) {
-	event.preventDefault();
-
-	var idVehiculo = document.getElementById('idVehiculoActualizar').value;
-	var placa = document.getElementById('placaActualizar').value;
-	var modelo = document.getElementById('modeloActualizar').value;
-	var tipoVehiculo = document.getElementById('tipoVehiculoActualizar').value;
-	var marca = document.getElementById('marcaActualizar').value;
-	var nivelVehiculo = document.getElementById('nivelVehiculoActualizar').value;
-	var disponibilidad = document.getElementById('disponibilidadActualizar').value;
-
-	var url = 'http://localhost:8081/vehiculos/' + idVehiculo;
-	var data = {
+	// Create JSON object
+	var vehiculoData = {
 		placa: placa,
 		modelo: modelo,
 		tipoVehiculo: tipoVehiculo,
@@ -291,6 +252,54 @@ function actualizarVehiculo(event) {
 		disponibilidad: disponibilidad
 	};
 
+	// Define URL and options for fetch request
+	var url = 'http://localhost:8081/vehiculo';
+
+	fetch(url, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(vehiculoData)
+	})
+	.then(response => {
+		if (response.ok) {
+			alert('Vehículo creado exitosamente');
+			resetForms();
+		} else {
+			throw new Error('Error al crear el vehículo');
+		}
+	})
+	.catch(error => {
+		console.error('Error:', error);
+		alert('Error al crear el vehículo');
+	});
+}
+
+
+// Función para actualizar un vehículo
+function actualizarVehiculo(event) {
+	event.preventDefault();
+
+	var idVehiculo = document.getElementById('id').value;
+	var placa = document.getElementById('placaActualizar').value;
+	var modelo = document.getElementById('modeloActualizar').value;
+	var tipoVehiculo = document.getElementById('tipoVehiculoActualizar').value;
+	var marca = document.getElementById('marcaActualizar').value;
+	var nivelVehiculo = document.getElementById('nivelVehiculoActualizar').value;
+	var disponibilidad = document.getElementById('disponibilidadActualizar').value;
+
+	var url = 'http://localhost:8081/vehiculo/' + idVehiculo;
+	var data = {
+		idVehiculo: idVehiculo,
+		placa: placa,
+		modelo: modelo,
+		tipoVehiculo: tipoVehiculo,
+		marca: marca,
+		nivelVehiculo: nivelVehiculo,
+		disponibilidad: disponibilidad
+	};
+	console.log(data)
 	fetch(url, {
 		method: 'PUT',
 		headers: {
@@ -318,7 +327,7 @@ function eliminarVehiculo(event) {
 
 	var idVehiculo = document.getElementById('idVehiculoEliminar').value;
 
-	var url = 'http://localhost:8081/vehiculos/' + idVehiculo;
+	var url = 'http://localhost:8081/vehiculo/' + idVehiculo;
 
 	fetch(url, {
 		method: 'DELETE'
@@ -388,7 +397,7 @@ function actualizarCategoria(event) {
 
     var url = 'http://localhost:8081/categoria/' + getiD_categoria;
     var data = {
-        getiD_categoria: getiD_categoria, // Convierte a entero si es necesario
+        iD_categoria: getiD_categoria, // Convierte a entero si es necesario
         nombre_categoria: nombreCategoria,
         precio: precio, // Convierte a flotante si es necesario
         horas_teoricas: horasTeoricas,
@@ -450,18 +459,19 @@ function eliminarCategoria(event) {
 function crearExamenPractico(event) {
     event.preventDefault();
 
-    var matriculadoId = document.getElementById('matriculadoCrear').value;
-    var instructorId = document.getElementById('instructorCrear').value;
-    var vehiculoId = document.getElementById('vehiculoCrear').value;
-    var resultado = document.getElementById('resultadoCrear').value;
+    // Crear un objeto FormData desde el formulario
+    var form = document.getElementById('examenForm');
+    var formData = new FormData(form);
 
-    var examenData = {
-        "getiD_matriculados": parseInt(matriculadoId),
-        "getiD_instructor": parseInt(instructorId),
-        "getiD_vehiculo": parseInt(vehiculoId),
-        "resultado": resultado
-    };
+    // Convertir FormData a un objeto JSON
+    var examenData = {};
+    formData.forEach((value, key) => {
+        examenData[key] = value;
+    });
 
+    console.log('Enviando datos:', examenData);
+
+    // Definir la URL y las opciones para la solicitud fetch
     var url = 'http://localhost:8081/examen-practico';
 
     fetch(url, {
@@ -476,6 +486,7 @@ function crearExamenPractico(event) {
             alert('Examen práctico creado exitosamente');
             resetForms();
         } else {
+            console.error('Error del servidor:', response.statusText);
             throw new Error('Error al crear el examen práctico');
         }
     })
@@ -484,8 +495,6 @@ function crearExamenPractico(event) {
         alert('Error al crear el examen práctico');
     });
 }
-
-
 
 
 // Función para actualizar un examen práctico
@@ -560,7 +569,7 @@ function crearClaseTeorica(event) {
 	var matriculado = document.getElementById('matriculadoCrear').value;
 	var descripcion = document.getElementById('descripcionCrear').value;
 
-	var url = 'http://localhost:8081/clases-teoricas';
+	var url = 'http://localhost:8081/clases-teorica';
 	var params = {
 		instructor: instructor,
 		matriculado: matriculado,
@@ -667,8 +676,6 @@ function crearMatriculado(event) {
 		id_cliente: clienteId, 
 		id_categoria: categoria
 	};
-
-
 
 	fetch(url, {
 		method: 'POST',
@@ -877,37 +884,53 @@ function eliminarCliente(event) {
 
 }
 
-// Función para crear un examen teorico
+	// Función para crear un examen teórico
 function crearExamenTeorico(event) {
-	event.preventDefault();
+    event.preventDefault();
 
-	var matriculado = document.getElementById('matriculadoCrear').value;
-	var instructor = document.getElementById('instructorCrear').value;
-	var resultado = document.getElementById('resultadoCrear').value;
+    // Obtener los valores del formulario
+    var matriculado = document.getElementById('m').value;
+    var resultado = document.getElementById('resultadoCrear').value;
 
-	var url = 'http://localhost:8081/examenes-practicos';
-	var params = new URLSearchParams();
-	params.append('matriculado', matriculado);
-	params.append('instructor', instructor);
-	params.append('resultado', resultado);
+    // Validar que el campo ID_matriculado no esté vacío
+    if (!matriculado) {
+        alert('Por favor, ingrese un valor para ID_matriculado.');
+        return; // Detener la ejecución de la función
+    }
 
-	fetch(url, {
-		method: 'POST',
-		body: params
-	})
-		.then(response => {
-			if (response.ok) {
-				alert('Examen teorico creado exitosamente');
-				resetForms();
-			} else {
-				throw new Error('Error al crear el examen teorico');
-			}
-		})
-		.catch(error => {
-			console.error('Error:', error);
-			alert('Error al crear el examen teorico');
-		});
+    // Crear el objeto JSON
+    var examenData = {
+        ID_matriculado: matriculado,
+        resultado: resultado
+    };
+
+    console.log('Datos del examen teórico:', examenData);
+
+    // URL de la solicitud
+    var url = 'http://localhost:8081/examen-teorico';
+
+    // Realizar la solicitud POST
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(examenData)
+    })
+    .then(response => {
+        if (response.ok) {
+            alert('Examen teórico creado exitosamente');
+            resetForms();
+        } else {
+            throw new Error('Error al crear el examen teórico');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Error al crear el examen teórico');
+    });
 }
+
 
 
 // Función para actualizar un examen teorico
@@ -916,16 +939,15 @@ function actualizarExamenTeorico(event) {
 
 	var idExamen = document.getElementById('idExamenActualizar').value;
 	var matriculado = document.getElementById('matriculadoActualizar').value;
-	var instructor = document.getElementById('instructorActualizar').value;
 	var resultado = document.getElementById('resultadoActualizar').value;
 
 	var url = 'http://localhost:8081/examen-practico/' + idExamen;
 	var data = {
-		matriculado: matriculado,
-		instructor: instructor,
+		ID_examenT : idExamen,
+		ID_matriculado: matriculado,
 		resultado: resultado
 	};
-
+console.log(data)
 	fetch(url, {
 		method: 'PUT',
 		headers: {
