@@ -5,45 +5,48 @@ function resetForms() {
 
 
 function crearInstructor(event) {
-	event.preventDefault();
+    event.preventDefault();
 
-	var nombre = document.getElementById('nombreInstructorCrear').value;
-	var apellido = document.getElementById('apellidoInstructorCrear').value;
-	var correo = document.getElementById('correoInstructorCrear').value;
-	var telefono = document.getElementById('telefonoInstructorCrear').value;
-	var cedula = document.getElementById('cedulaInstructorCrear').value;
-	var tipo = document.getElementById('tipoInstructorActualizar').value;
-	var disponibilidad = document.getElementById('disponibilidadInstructorActualizar').value;
+    var nombre = document.getElementById('nombreInstructorCrear').value;
+    var apellido = document.getElementById('apellidoInstructorCrear').value;
+    var correo = document.getElementById('correoInstructorCrear').value;
+    var telefono = document.getElementById('telefonoInstructorCrear').value;
+    var cedula = document.getElementById('cedulaInstructorCrear').value;
+    var tipo = document.getElementById('tipoInstructorCrear').value;
+    var disponibilidad = document.getElementById('disponibilidadInstructorCrear').value;
 
+    var url = 'http://localhost:8081/instructor';
+    var data = {
+        nombre: nombre,
+        apellido: apellido,
+        correo: correo,
+        telefono: telefono,
+        cedula: cedula,
+        tipo_instructor: tipo,
+        disponibilidad: disponibilidad
+    };
 
-	var url = 'http://localhost:8081/instructores';
-	var params = new URLSearchParams();
-	params.append('nombre', nombre);
-	params.append('apellido', apellido);
-	params.append('correo', correo);
-	params.append('telefono', telefono);
-	params.append('tipo_instructor', tipo);
-	params.append('disponibilidad', disponibilidad);
-	params.append('cedula', cedula)
-
-
-	fetch(url, {
-		method: 'POST',
-		body: params
-	})
-		.then(response => {
-			if (response.ok) {
-				alert('Instructor creado exitosamente');
-				resetForms();
-			} else {
-				throw new Error('Error al crear el instructor');
-			}
-		})
-		.catch(error => {
-			console.error('Error:', error);
-			alert('Error al crear el instructor');
-		});
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+        .then(response => {
+            if (response.ok) {
+                alert('Instructor creado exitosamente');
+                resetForms();
+            } else {
+                throw new Error('Error al crear el instructor');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error al crear el instructor');
+        });
 }
+
 
 // Función para actualizar un instructor
 function actualizarInstructor(event) {
@@ -61,14 +64,14 @@ function actualizarInstructor(event) {
 
 	// Realizar una solicitud PUT a la API para actualizar el instructor
 	// Aquí deberías especificar la URL correcta de tu API, incluyendo el ID del instructor a actualizar
-	var url = 'http://localhost:8081/instructores/' + id;
+	var url = 'http://localhost:8081/instructor/' + id;
 	var data = {
 		nombre: nombre,
 		apellido: apellido,
 		correo: correo,
 		telefono: telefono,
 		cedula: cedula,
-		tipo: tipo,
+		tipo_instructor: tipo,
 		disponibilidad: disponibilidad
 	};
 
@@ -101,7 +104,7 @@ function eliminarInstructor(event) {
 
 	// Realizar una solicitud DELETE a la API para eliminar el instructor
 	// Aquí deberías especificar la URL correcta de tu API, incluyendo el ID del instructor a eliminar
-	var url = 'http://localhost:8081/instructores/' + cedula;
+	var url = 'http://localhost:8081/instructor/' + cedula;
 
 	fetch(url, {
 		method: 'DELETE'
@@ -122,37 +125,42 @@ function eliminarInstructor(event) {
 
 
 function crearClasePractica(event) {
-	event.preventDefault();
+    event.preventDefault();
 
-	var instructorId = document.getElementById('instructorCrear').value;
-	var vehiculoId = document.getElementById('vehiculoCrear').value;
-	var matriculadoId = document.getElementById('matriculadoCrear').value;
-	var descripcion = document.getElementById('descripcionCrear').value;
+    var instructorId = document.getElementById('instructorCrear').value;
+    var vehiculoId = document.getElementById('vehiculoCrear').value;
+    var matriculadoId = document.getElementById('matriculadoCrear').value;
+    var descripcion = document.getElementById('descripcionCrear').value;
 
-	var url = 'http://localhost:8081/clasesPracticas';
-	var params = new URLSearchParams();
-	params.append('instructorId', instructorId);
-	params.append('vehiculoId', vehiculoId);
-	params.append('matriculadoId', matriculadoId);
-	params.append('descripcion', descripcion);
+    var url = 'http://localhost:8081/clase-practica';
+    var data = {
+        ID_instructor: instructorId,
+        ID_vehiculo: vehiculoId,
+        ID_matriculado: matriculadoId,
+        descripcion: descripcion
+    };
 
-	fetch(url, {
-		method: 'POST',
-		body: params
-	})
-		.then(response => {
-			if (response.ok) {
-				alert('Clase práctica creada exitosamente');
-				resetForms();
-			} else {
-				throw new Error('Error al crear la clase práctica');
-			}
-		})
-		.catch(error => {
-			console.error('Error:', error);
-			alert('Error al crear la clase práctica');
-		});
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+        .then(response => {
+            if (response.ok) {
+                alert('Clase práctica creada exitosamente');
+                resetForms();
+            } else {
+                throw new Error('Error al crear la clase práctica');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error al crear la clase práctica');
+        });
 }
+
 
 
 // Función para actualizar una clase práctica
@@ -167,11 +175,11 @@ function actualizarClasePractica(event) {
 
 	// Realizar una solicitud PUT a la API para actualizar la clase práctica
 	// Aquí deberías especificar la URL correcta de tu API, incluyendo el ID de la clase práctica a actualizar
-	var url = 'http://localhost:8081/clasesPracticas/' + claseId;
+	var url = 'http://localhost:8081/clase-practica/' + claseId;
 	var data = {
-		instructorId: instructorId,
-		vehiculoId: vehiculoId,
-		matriculadoId: matriculadoId,
+		ID_instructor: instructorId,
+		ID_vehiculo: vehiculoId,
+		ID_matriculado: matriculadoId,
 		descripcion: descripcion
 	};
 
@@ -204,7 +212,7 @@ function eliminarClasePractica(event) {
 
 	// Realizar una solicitud DELETE a la API para eliminar la clase práctica
 	// Aquí deberías especificar la URL correcta de tu API, incluyendo el ID de la clase práctica a eliminar
-	var url = 'http://localhost:8081/clasesPracticas/' + claseId;
+	var url = 'http://localhost:8081/clase-practica/' + claseId;
 
 	fetch(url, {
 		method: 'DELETE'
@@ -332,21 +340,25 @@ function eliminarVehiculo(event) {
 function crearCategoria(event) {
 	event.preventDefault();
 
-	var precio = document.getElementById('precioCrear').value;
+	var nombreCategoria = document.getElementById('nombreCategoriaCrear').value;
+	var precio = parseFloat(document.getElementById('precioCrear').value);
 	var horasTeoricas = document.getElementById('horasTeoricasCrear').value;
 	var horasPracticas = document.getElementById('horasPracticasCrear').value;
-	var nombreCategoria = document.getElementById('nombreCategoriaCrear').value;
 
-	var url = 'http://localhost:8081/categorias';
-	var params = new URLSearchParams();
-	params.append('precio', precio);
-	params.append('horasTeoricas', horasTeoricas);
-	params.append('horasPracticas', horasPracticas);
-	params.append('nombreCategoria', nombreCategoria);
+	var url = 'http://localhost:8081/categoria';
+	var data = {
+		nombre_categoria: nombreCategoria,
+		precio: precio,
+		horas_teoricas: horasTeoricas,
+		horas_practicas: horasPracticas
+	};
 
 	fetch(url, {
 		method: 'POST',
-		body: params
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(data)
 	})
 		.then(response => {
 			if (response.ok) {
@@ -363,44 +375,50 @@ function crearCategoria(event) {
 }
 
 
+
 // Función para actualizar una categoría
 function actualizarCategoria(event) {
-	event.preventDefault();
+    event.preventDefault();
 
-	var idCategoria = document.getElementById('idCategoriaActualizar').value;
-	var precio = document.getElementById('precioActualizar').value;
-	var horasTeoricas = document.getElementById('horasTeoricasActualizar').value;
-	var horasPracticas = document.getElementById('horasPracticasActualizar').value;
-	var nombreCategoria = document.getElementById('nombreCategoriaActualizar').value;
+    var getiD_categoria = document.getElementById('idCategoriaActualizar').value;
+    var nombreCategoria = document.getElementById('nombreCategoriaActualizar').value;
+    var precio = document.getElementById('precioActualizar').value;
+    var horasTeoricas = document.getElementById('horasTeoricasActualizar').value;
+    var horasPracticas = document.getElementById('horasPracticasActualizar').value;
 
-	var url = 'http://localhost:8081/categorias/' + idCategoria;
-	var data = {
-		precio: precio,
-		horasTeoricas: horasTeoricas,
-		horasPracticas: horasPracticas,
-		nombreCategoria: nombreCategoria
-	};
+    var url = 'http://localhost:8081/categoria/' + getiD_categoria;
+    var data = {
+        getiD_categoria: getiD_categoria, // Convierte a entero si es necesario
+        nombre_categoria: nombreCategoria,
+        precio: precio, // Convierte a flotante si es necesario
+        horas_teoricas: horasTeoricas,
+        horas_practicas: horasPracticas
+    };
+    
+    
+    console.log(data);
 
-	fetch(url, {
-		method: 'PUT',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify(data)
-	})
-		.then(response => {
-			if (response.ok) {
-				alert('Categoría actualizada exitosamente'); resetForms();
-				resetForms();
-			} else {
-				throw new Error('Error al actualizar la categoría');
-			}
-		})
-		.catch(error => {
-			console.error('Error:', error);
-			alert('Error al actualizar la categoría');
-		});
+    fetch(url, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => {
+        if (response.ok) {
+            alert('Categoría actualizada exitosamente');
+            resetForms();
+        } else {
+            throw new Error('Error al actualizar la categoría');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Error al actualizar la categoría');
+    });
 }
+
 
 // Función para eliminar una categoría
 function eliminarCategoria(event) {
@@ -408,7 +426,7 @@ function eliminarCategoria(event) {
 
 	var idCategoria = document.getElementById('idCategoriaEliminar').value;
 
-	var url = 'http://localhost:8081/categorias/' + idCategoria;
+	var url = 'http://localhost:8081/categoria/' + idCategoria;
 
 	fetch(url, {
 		method: 'DELETE'
@@ -430,37 +448,44 @@ function eliminarCategoria(event) {
 
 // Función para crear un examen práctico
 function crearExamenPractico(event) {
-	event.preventDefault();
+    event.preventDefault();
 
-	var matriculado = document.getElementById('matriculadoCrear').value;
-	var instructor = document.getElementById('instructorCrear').value;
-	var vehiculo = document.getElementById('vehiculoCrear').value;
-	var resultado = document.getElementById('resultadoCrear').value;
+    var matriculadoId = document.getElementById('matriculadoCrear').value;
+    var instructorId = document.getElementById('instructorCrear').value;
+    var vehiculoId = document.getElementById('vehiculoCrear').value;
+    var resultado = document.getElementById('resultadoCrear').value;
 
-	var url = 'http://localhost:8081/examenes-practicos';
-	var params = new URLSearchParams();
-	params.append('matriculado', matriculado);
-	params.append('instructor', instructor);
-	params.append('vehiculo', vehiculo);
-	params.append('resultado', resultado);
+    var examenData = {
+        "getiD_matriculados": parseInt(matriculadoId),
+        "getiD_instructor": parseInt(instructorId),
+        "getiD_vehiculo": parseInt(vehiculoId),
+        "resultado": resultado
+    };
 
-	fetch(url, {
-		method: 'POST',
-		body: params
-	})
-		.then(response => {
-			if (response.ok) {
-				alert('Examen práctico creado exitosamente');
-				resetForms();
-			} else {
-				throw new Error('Error al crear el examen práctico');
-			}
-		})
-		.catch(error => {
-			console.error('Error:', error);
-			alert('Error al crear el examen práctico');
-		});
+    var url = 'http://localhost:8081/examen-practico';
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(examenData)
+    })
+    .then(response => {
+        if (response.ok) {
+            alert('Examen práctico creado exitosamente');
+            resetForms();
+        } else {
+            throw new Error('Error al crear el examen práctico');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Error al crear el examen práctico');
+    });
 }
+
+
 
 
 // Función para actualizar un examen práctico
@@ -474,7 +499,7 @@ function actualizarExamenPractico(event) {
 	var resultado = document.getElementById('resultadoActualizar').value;
 
 	var url = 'http://localhost:8081/examenes-practicos/' + idExamen;
-	var data = {
+	var params = {
 		matriculado: matriculado,
 		instructor: instructor,
 		vehiculo: vehiculo,
@@ -482,11 +507,11 @@ function actualizarExamenPractico(event) {
 	};
 
 	fetch(url, {
-		method: 'PUT',
+		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json'
 		},
-		body: JSON.stringify(data)
+		body: JSON.stringify(params)
 	})
 		.then(response => {
 			if (response.ok) {
@@ -536,14 +561,18 @@ function crearClaseTeorica(event) {
 	var descripcion = document.getElementById('descripcionCrear').value;
 
 	var url = 'http://localhost:8081/clases-teoricas';
-	var params = new URLSearchParams();
-	params.append('instructor', instructor);
-	params.append('matriculado', matriculado);
-	params.append('descripcion', descripcion);
+	var params = {
+		instructor: instructor,
+		matriculado: matriculado,
+		descripcion: descripcion
+	};
 
 	fetch(url, {
 		method: 'POST',
-		body: params
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(params)
 	})
 		.then(response => {
 			if (response.ok) {
@@ -558,6 +587,7 @@ function crearClaseTeorica(event) {
 			alert('Error al crear la clase teórica');
 		});
 }
+
 
 
 // Función para actualizar una clase teórica
@@ -889,7 +919,7 @@ function actualizarExamenTeorico(event) {
 	var instructor = document.getElementById('instructorActualizar').value;
 	var resultado = document.getElementById('resultadoActualizar').value;
 
-	var url = 'http://localhost:8081/examenes-practicos/' + idExamen;
+	var url = 'http://localhost:8081/examen-practico/' + idExamen;
 	var data = {
 		matriculado: matriculado,
 		instructor: instructor,
