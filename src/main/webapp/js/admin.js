@@ -11,6 +11,10 @@ function crearInstructor(event) {
 	var apellido = document.getElementById('apellidoInstructorCrear').value;
 	var correo = document.getElementById('correoInstructorCrear').value;
 	var telefono = document.getElementById('telefonoInstructorCrear').value;
+	var cedula = document.getElementById('cedulaInstructorCrear').value;
+	var tipo = document.getElementById('tipoInstructorActualizar').value;
+	var disponibilidad = document.getElementById('disponibilidadInstructorActualizar').value;
+
 
 	var url = 'http://localhost:8081/api/instructores';
 	var params = new URLSearchParams();
@@ -18,6 +22,10 @@ function crearInstructor(event) {
 	params.append('apellido', apellido);
 	params.append('correo', correo);
 	params.append('telefono', telefono);
+	params.append('tipo_instructor', tipo);
+	params.append('disponibilidad', disponibilidad);
+	params.append('cedula', cedula)
+	
 
 	fetch(url, {
 		method: 'POST',
@@ -46,7 +54,11 @@ function actualizarInstructor(event) {
 	var apellido = document.getElementById('apellidoInstructorActualizar').value;
 	var correo = document.getElementById('correoInstructorActualizar').value;
 	var telefono = document.getElementById('telefonoInstructorActualizar').value;
+	var cedula = document.getElementById('cedulaInstructorActualizar').value;
+	var tipo = document.getElementById('tipoInstructorActualizar').value;
+	var disponibilidad = document.getElementById('disponibilidadInstructorActualizar').value;
 
+	
 	// Realizar una solicitud PUT a la API para actualizar el instructor
 	// Aquí deberías especificar la URL correcta de tu API, incluyendo el ID del instructor a actualizar
 	var url = 'http://localhost:8081/api/instructores/' + id;
@@ -54,7 +66,10 @@ function actualizarInstructor(event) {
 		nombre: nombre,
 		apellido: apellido,
 		correo: correo,
-		telefono: telefono
+		telefono: telefono,
+		cedula: cedula,
+		tipo: tipo,
+		disponibilidad: disponibilidad
 	};
 
 	fetch(url, {
@@ -82,11 +97,11 @@ function actualizarInstructor(event) {
 function eliminarInstructor(event) {
 	event.preventDefault();
 
-	var id = document.getElementById('idInstructorEliminar').value;
+	var cedula = document.getElementById('cedulaInstructorEliminar').value;
 
 	// Realizar una solicitud DELETE a la API para eliminar el instructor
 	// Aquí deberías especificar la URL correcta de tu API, incluyendo el ID del instructor a eliminar
-	var url = 'http://localhost:8081/api/instructores/' + id;
+	var url = 'http://localhost:8081/api/instructores/' + cedula;
 
 	fetch(url, {
 		method: 'DELETE'
@@ -807,6 +822,102 @@ function eliminarCliente(event) {
 		.catch(error => {
 			console.error('Error:', error);
 			alert('Error al eliminar el cliente');
+		});
+				
+}
+
+// Función para crear un examen teorico
+function crearExamenTeorico(event) {
+	event.preventDefault();
+
+	var matriculado = document.getElementById('matriculadoCrear').value;
+	var instructor = document.getElementById('instructorCrear').value;
+	var resultado = document.getElementById('resultadoCrear').value;
+
+	var url = 'http://localhost:8081/api/examenes-practicos';
+	var params = new URLSearchParams();
+	params.append('matriculado', matriculado);
+	params.append('instructor', instructor);
+	params.append('resultado', resultado);
+
+	fetch(url, {
+		method: 'POST',
+		body: params
+	})
+		.then(response => {
+			if (response.ok) {
+				alert('Examen teorico creado exitosamente');
+				resetForms();
+			} else {
+				throw new Error('Error al crear el examen teorico');
+			}
+		})
+		.catch(error => {
+			console.error('Error:', error);
+			alert('Error al crear el examen teorico');
+		});
+}
+
+
+// Función para actualizar un examen teorico
+function actualizarExamenTeorico(event) {
+	event.preventDefault();
+
+	var idExamen = document.getElementById('idExamenActualizar').value;
+	var matriculado = document.getElementById('matriculadoActualizar').value;
+	var instructor = document.getElementById('instructorActualizar').value;
+	var resultado = document.getElementById('resultadoActualizar').value;
+
+	var url = 'http://localhost:8081/api/examenes-practicos/' + idExamen;
+	var data = {
+		matriculado: matriculado,
+		instructor: instructor,
+		resultado: resultado
+	};
+
+	fetch(url, {
+		method: 'PUT',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(data)
+	})
+		.then(response => {
+			if (response.ok) {
+				alert('Examen teorico actualizado exitosamente'); resetForms();
+				resetForms();
+			} else {
+				throw new Error('Error al actualizar el examen teorico');
+			}
+		})
+		.catch(error => {
+			console.error('Error:', error);
+			alert('Error al actualizar el examen teorico');
+		});
+}
+
+// Función para eliminar un examen teorico
+function eliminarExamenTeorico(event) {
+	event.preventDefault();
+
+	var idExamen = document.getElementById('idExamenEliminar').value;
+
+	var url = 'http://localhost:8081/api/examenes-practicos/' + idExamen;
+
+	fetch(url, {
+		method: 'DELETE'
+	})
+		.then(response => {
+			if (response.ok) {
+				alert('Examen teorico eliminado exitosamente'); resetForms();
+				resetForms();
+			} else {
+				throw new Error('Error al eliminar el examen teorico');
+			}
+		})
+		.catch(error => {
+			console.error('Error:', error);
+			alert('Error al eliminar el examen teorico');
 		});
 }
 

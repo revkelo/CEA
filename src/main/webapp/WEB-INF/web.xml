@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app>
+	
 	<display-name>formulario con servlets</display-name>
 	<description>
 		Pagina parque diversiones
@@ -15,4 +16,5 @@
 		<servlet-name>ServletAdmin</servlet-name>
 		<url-pattern>/admin</url-pattern>
 	</servlet-mapping>
+	
 </web-app>
