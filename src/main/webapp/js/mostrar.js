@@ -6,13 +6,34 @@ document.addEventListener("DOMContentLoaded", function() {
 		const tipoDatos = document.getElementById("tipo-datos").value;
 		let url = "";
 
+		let cardTitle = document.getElementById('card-title');
+
 		if (tipoDatos === "cliente") {
 			url = "http://localhost:8081/cliente";
-		} else if (tipoDatos === "persona") {
-			url = "http://localhost:8081/personas";
+			cardTitle.textContent = "Cliente";
 		} else if (tipoDatos === "instructor") {
-			url = "http://localhost:8081/sql/instructor";
+			url = "http://localhost:8081/instructor";
+			cardTitle.textContent = "Instructor";
+		} else if (tipoDatos === "clase-practica") {
+			url = "http://localhost:8081/clase-practica";
+			cardTitle.textContent = "Clase Práctica";
+		} else if (tipoDatos === "vehiculos") {
+			url = "http://localhost:8081/vehiculo";
+			cardTitle.textContent = "Vehículos";
+		} else if (tipoDatos === "categoria") {
+			url = "http://localhost:8081/categoria";
+			cardTitle.textContent = "Categoría";
+		} else if (tipoDatos === "examen-practico") {
+			url = "http://localhost:8081/examen-practico";
+			cardTitle.textContent = "Examen Práctico";
+		} else if (tipoDatos === "examen-teorico") {
+			url = "http://localhost:8081/examen-teorico";
+			cardTitle.textContent = "Examen Teórico";
+		} else if (tipoDatos === "matriculados") {
+			url = "http://localhost:8081/matriculados";
+			cardTitle.textContent = "Matriculados";
 		}
+
 		// Agrega más condiciones según sea necesario para otros tipos de datos
 
 		fetch(url)
