@@ -16,7 +16,7 @@ function crearInstructor(event) {
 	var disponibilidad = document.getElementById('disponibilidadInstructorActualizar').value;
 
 
-	var url = 'http://localhost:8081/api/instructores';
+	var url = 'http://localhost:8081/instructores';
 	var params = new URLSearchParams();
 	params.append('nombre', nombre);
 	params.append('apellido', apellido);
@@ -61,7 +61,7 @@ function actualizarInstructor(event) {
 
 	// Realizar una solicitud PUT a la API para actualizar el instructor
 	// Aquí deberías especificar la URL correcta de tu API, incluyendo el ID del instructor a actualizar
-	var url = 'http://localhost:8081/api/instructores/' + id;
+	var url = 'http://localhost:8081/instructores/' + id;
 	var data = {
 		nombre: nombre,
 		apellido: apellido,
@@ -101,7 +101,7 @@ function eliminarInstructor(event) {
 
 	// Realizar una solicitud DELETE a la API para eliminar el instructor
 	// Aquí deberías especificar la URL correcta de tu API, incluyendo el ID del instructor a eliminar
-	var url = 'http://localhost:8081/api/instructores/' + cedula;
+	var url = 'http://localhost:8081/instructores/' + cedula;
 
 	fetch(url, {
 		method: 'DELETE'
@@ -129,7 +129,7 @@ function crearClasePractica(event) {
 	var matriculadoId = document.getElementById('matriculadoCrear').value;
 	var descripcion = document.getElementById('descripcionCrear').value;
 
-	var url = 'http://localhost:8081/api/clasesPracticas';
+	var url = 'http://localhost:8081/clasesPracticas';
 	var params = new URLSearchParams();
 	params.append('instructorId', instructorId);
 	params.append('vehiculoId', vehiculoId);
@@ -167,7 +167,7 @@ function actualizarClasePractica(event) {
 
 	// Realizar una solicitud PUT a la API para actualizar la clase práctica
 	// Aquí deberías especificar la URL correcta de tu API, incluyendo el ID de la clase práctica a actualizar
-	var url = 'http://localhost:8081/api/clasesPracticas/' + claseId;
+	var url = 'http://localhost:8081/clasesPracticas/' + claseId;
 	var data = {
 		instructorId: instructorId,
 		vehiculoId: vehiculoId,
@@ -204,7 +204,7 @@ function eliminarClasePractica(event) {
 
 	// Realizar una solicitud DELETE a la API para eliminar la clase práctica
 	// Aquí deberías especificar la URL correcta de tu API, incluyendo el ID de la clase práctica a eliminar
-	var url = 'http://localhost:8081/api/clasesPracticas/' + claseId;
+	var url = 'http://localhost:8081/clasesPracticas/' + claseId;
 
 	fetch(url, {
 		method: 'DELETE'
@@ -233,7 +233,7 @@ function crearVehiculo(event) {
 	var nivelVehiculo = document.getElementById('nivelVehiculoCrear').value;
 	var disponibilidad = document.getElementById('disponibilidadCrear').value;
 
-	var url = 'http://localhost:8081/api/vehiculos';
+	var url = 'http://localhost:8081/vehiculos';
 	var params = new URLSearchParams();
 	params.append('placa', placa);
 	params.append('modelo', modelo);
@@ -273,7 +273,7 @@ function actualizarVehiculo(event) {
 	var nivelVehiculo = document.getElementById('nivelVehiculoActualizar').value;
 	var disponibilidad = document.getElementById('disponibilidadActualizar').value;
 
-	var url = 'http://localhost:8081/api/vehiculos/' + idVehiculo;
+	var url = 'http://localhost:8081/vehiculos/' + idVehiculo;
 	var data = {
 		placa: placa,
 		modelo: modelo,
@@ -310,7 +310,7 @@ function eliminarVehiculo(event) {
 
 	var idVehiculo = document.getElementById('idVehiculoEliminar').value;
 
-	var url = 'http://localhost:8081/api/vehiculos/' + idVehiculo;
+	var url = 'http://localhost:8081/vehiculos/' + idVehiculo;
 
 	fetch(url, {
 		method: 'DELETE'
@@ -337,7 +337,7 @@ function crearCategoria(event) {
 	var horasPracticas = document.getElementById('horasPracticasCrear').value;
 	var nombreCategoria = document.getElementById('nombreCategoriaCrear').value;
 
-	var url = 'http://localhost:8081/api/categorias';
+	var url = 'http://localhost:8081/categorias';
 	var params = new URLSearchParams();
 	params.append('precio', precio);
 	params.append('horasTeoricas', horasTeoricas);
@@ -373,7 +373,7 @@ function actualizarCategoria(event) {
 	var horasPracticas = document.getElementById('horasPracticasActualizar').value;
 	var nombreCategoria = document.getElementById('nombreCategoriaActualizar').value;
 
-	var url = 'http://localhost:8081/api/categorias/' + idCategoria;
+	var url = 'http://localhost:8081/categorias/' + idCategoria;
 	var data = {
 		precio: precio,
 		horasTeoricas: horasTeoricas,
@@ -408,7 +408,7 @@ function eliminarCategoria(event) {
 
 	var idCategoria = document.getElementById('idCategoriaEliminar').value;
 
-	var url = 'http://localhost:8081/api/categorias/' + idCategoria;
+	var url = 'http://localhost:8081/categorias/' + idCategoria;
 
 	fetch(url, {
 		method: 'DELETE'
@@ -437,7 +437,7 @@ function crearExamenPractico(event) {
 	var vehiculo = document.getElementById('vehiculoCrear').value;
 	var resultado = document.getElementById('resultadoCrear').value;
 
-	var url = 'http://localhost:8081/api/examenes-practicos';
+	var url = 'http://localhost:8081/examenes-practicos';
 	var params = new URLSearchParams();
 	params.append('matriculado', matriculado);
 	params.append('instructor', instructor);
@@ -473,7 +473,7 @@ function actualizarExamenPractico(event) {
 	var vehiculo = document.getElementById('vehiculoActualizar').value;
 	var resultado = document.getElementById('resultadoActualizar').value;
 
-	var url = 'http://localhost:8081/api/examenes-practicos/' + idExamen;
+	var url = 'http://localhost:8081/examenes-practicos/' + idExamen;
 	var data = {
 		matriculado: matriculado,
 		instructor: instructor,
@@ -508,7 +508,7 @@ function eliminarExamenPractico(event) {
 
 	var idExamen = document.getElementById('idExamenEliminar').value;
 
-	var url = 'http://localhost:8081/api/examenes-practicos/' + idExamen;
+	var url = 'http://localhost:8081/examenes-practicos/' + idExamen;
 
 	fetch(url, {
 		method: 'DELETE'
@@ -535,7 +535,7 @@ function crearClaseTeorica(event) {
 	var matriculado = document.getElementById('matriculadoCrear').value;
 	var descripcion = document.getElementById('descripcionCrear').value;
 
-	var url = 'http://localhost:8081/api/clases-teoricas';
+	var url = 'http://localhost:8081/clases-teoricas';
 	var params = new URLSearchParams();
 	params.append('instructor', instructor);
 	params.append('matriculado', matriculado);
@@ -569,7 +569,7 @@ function actualizarClaseTeorica(event) {
 	var matriculado = document.getElementById('matriculadoActualizar').value;
 	var descripcion = document.getElementById('descripcionActualizar').value;
 
-	var url = 'http://localhost:8081/api/clases-teoricas/' + idClase;
+	var url = 'http://localhost:8081/clases-teoricas/' + idClase;
 	var data = {
 		instructor: instructor,
 		matriculado: matriculado,
@@ -603,7 +603,7 @@ function eliminarClaseTeorica(event) {
 
 	var idClase = document.getElementById('idClaseEliminar').value;
 
-	var url = 'http://localhost:8081/api/clases-teoricas/' + idClase;
+	var url = 'http://localhost:8081/clases-teoricas/' + idClase;
 
 	fetch(url, {
 		method: 'DELETE'
@@ -621,33 +621,42 @@ function eliminarClaseTeorica(event) {
 			alert('Error al eliminar la clase teórica');
 		});
 }
-
 function crearMatriculado(event) {
 	event.preventDefault();
 
-	var cliente = document.getElementById('clienteCrear').value;
+	var clienteId = document.getElementById('clienteCrear').value; // Cambio en la variable cliente
 	var categoria = document.getElementById('categoriaCrear').value;
 	var fechaInicio = document.getElementById('fechaInicioCrear').value;
 	var fechaFin = document.getElementById('fechaFinCrear').value;
 
-	var url = 'http://localhost:8081/api/matriculados';
-	var params = new URLSearchParams();
-	params.append('cliente', cliente);
-	params.append('categoria', categoria);
-	params.append('fechaInicio', fechaInicio);
-	params.append('fechaFin', fechaFin);
+	var url = 'http://localhost:8081/matriculados';
+	var data = {
+
+		fecha_inicio: fechaInicio,
+		fecha_fin: fechaFin,
+		id_cliente: clienteId, 
+		id_categoria: categoria
+	};
+
+
 
 	fetch(url, {
 		method: 'POST',
-		body: params
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(data)
 	})
 		.then(response => {
 			if (response.ok) {
-				alert('Matriculado creado exitosamente');
-				resetForms();
+				return response.json(); // Suponiendo que el servidor responde con JSON
 			} else {
 				throw new Error('Error al crear el matriculado');
 			}
+		})
+		.then(data => {
+			alert('Matriculado creado exitosamente');
+			resetForms();
 		})
 		.catch(error => {
 			console.error('Error:', error);
@@ -656,43 +665,46 @@ function crearMatriculado(event) {
 }
 
 
+
 // Función para actualizar un matriculado
 function actualizarMatriculado(event) {
-	event.preventDefault();
+    event.preventDefault();
 
-	var idMatriculado = document.getElementById('idMatriculadoActualizar').value;
-	var cliente = document.getElementById('clienteActualizar').value;
-	var categoria = document.getElementById('categoriaActualizar').value;
-	var fechaInicio = document.getElementById('fechaInicioActualizar').value;
-	var fechaFin = document.getElementById('fechaFinActualizar').value;
+    var idMatriculado = document.getElementById('idMatriculadoActualizar').value;
+    var cliente = document.getElementById('clienteActualizar').value;
+    var categoria = document.getElementById('categoriaActualizar').value;
+    var fechaInicio = document.getElementById('fechaInicioActualizar').value;
+    var fechaFin = document.getElementById('fechaFinActualizar').value;
 
-	var url = 'http://localhost:8081/api/matriculados/' + idMatriculado;
-	var data = {
-		cliente: cliente,
-		categoria: categoria,
-		fechaInicio: fechaInicio,
-		fechaFin: fechaFin
-	};
+    var url = 'http://localhost:8081/matriculados/' + idMatriculado;
+    var data = {
+      	fecha_inicio: fechaInicio,
+		fecha_fin: fechaFin,
+		id_cliente: cliente, 
+		id_categoria: categoria
+    };
 
-	fetch(url, {
-		method: 'PUT',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify(data)
-	})
-		.then(response => {
-			if (response.ok) {
-				alert('Matriculado actualizado exitosamente'); resetForms();
-			} else {
-				throw new Error('Error al actualizar el matriculado');
-			}
-		})
-		.catch(error => {
-			console.error('Error:', error);
-			alert('Error al actualizar el matriculado');
-		});
+    fetch(url, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => {
+        if (response.ok) {
+            alert('Matriculado actualizado exitosamente');
+            resetForms(); // Assuming you have a function to reset the form fields
+        } else {
+            throw new Error('Error al actualizar el matriculado');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Error al actualizar el matriculado');
+    });
 }
+
 
 // Función para eliminar un matriculado
 function eliminarMatriculado(event) {
@@ -700,7 +712,7 @@ function eliminarMatriculado(event) {
 
 	var idMatriculado = document.getElementById('idMatriculadoEliminar').value;
 
-	var url = 'http://localhost:8081/api/matriculados/' + idMatriculado;
+	var url = 'http://localhost:8081/matriculados/' + idMatriculado;
 
 	fetch(url, {
 		method: 'DELETE'
@@ -795,7 +807,7 @@ function actualizarCliente(event) {
 			}
 		})
 		.then(data => {
-			alert("Actualizado Correctamente ",data);
+			alert("Actualizado Correctamente ", data);
 			resetForms();
 		})
 		.catch(error => {
@@ -825,7 +837,7 @@ function eliminarCliente(event) {
 			}
 		})
 		.then(data => {
-			alert("Eliminado Correctamente ",data);
+			alert("Eliminado Correctamente ", data);
 			resetForms();
 		})
 		.catch(error => {
@@ -843,7 +855,7 @@ function crearExamenTeorico(event) {
 	var instructor = document.getElementById('instructorCrear').value;
 	var resultado = document.getElementById('resultadoCrear').value;
 
-	var url = 'http://localhost:8081/api/examenes-practicos';
+	var url = 'http://localhost:8081/examenes-practicos';
 	var params = new URLSearchParams();
 	params.append('matriculado', matriculado);
 	params.append('instructor', instructor);
@@ -877,7 +889,7 @@ function actualizarExamenTeorico(event) {
 	var instructor = document.getElementById('instructorActualizar').value;
 	var resultado = document.getElementById('resultadoActualizar').value;
 
-	var url = 'http://localhost:8081/api/examenes-practicos/' + idExamen;
+	var url = 'http://localhost:8081/examenes-practicos/' + idExamen;
 	var data = {
 		matriculado: matriculado,
 		instructor: instructor,
@@ -911,7 +923,7 @@ function eliminarExamenTeorico(event) {
 
 	var idExamen = document.getElementById('idExamenEliminar').value;
 
-	var url = 'http://localhost:8081/api/examenes-practicos/' + idExamen;
+	var url = 'http://localhost:8081/examenes-practicos/' + idExamen;
 
 	fetch(url, {
 		method: 'DELETE'
