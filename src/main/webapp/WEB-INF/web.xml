@@ -1,20 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app>
-	
-	<display-name>formulario con servlets</display-name>
-	<description>
-		Pagina parque diversiones
-	</description>
-	<distributable></distributable>
-	<servlet>
-		<servlet-name>ServletAdmin</servlet-name>
-		<servlet-class>controller.ServletAdmin</servlet-class>
-	</servlet>
-	
 
-	<servlet-mapping>
-		<servlet-name>ServletAdmin</servlet-name>
-		<url-pattern>/admin</url-pattern>
-	</servlet-mapping>
-	
+		<display-name>formulario con servlets</display-name>
+		<description>
+			Pagina parque diversiones
+		</description>
+		<distributable></distributable>
+
+
 </web-app>

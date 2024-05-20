@@ -25,7 +25,7 @@ function crearInstructor(event) {
 	params.append('tipo_instructor', tipo);
 	params.append('disponibilidad', disponibilidad);
 	params.append('cedula', cedula)
-	
+
 
 	fetch(url, {
 		method: 'POST',
@@ -58,7 +58,7 @@ function actualizarInstructor(event) {
 	var tipo = document.getElementById('tipoInstructorActualizar').value;
 	var disponibilidad = document.getElementById('disponibilidadInstructorActualizar').value;
 
-	
+
 	// Realizar una solicitud PUT a la API para actualizar el instructor
 	// Aquí deberías especificar la URL correcta de tu API, incluyendo el ID del instructor a actualizar
 	var url = 'http://localhost:8081/api/instructores/' + id;
@@ -726,21 +726,26 @@ function crearCliente(event) {
 	var correo = document.getElementById('correoCrear').value;
 	var cedula = document.getElementById('cedulaCrear').value;
 
-	var url = 'http://localhost:8081/sql/cliente'; // Corregido el nombre de la ruta
-	var params = new URLSearchParams();
-	params.append('nombre', nombre);
-	params.append('apellido', apellido);
-	params.append('telefono', telefono);
-	params.append('correo', correo);
-	params.append('cedula', cedula);
+	var url = 'http://localhost:8081/cliente'; // URL correcta de la ruta
+
+	var cliente = {
+		nombre: nombre,
+		apellido: apellido,
+		telefono: telefono,
+		correo: correo,
+		cedula: cedula
+	};
 
 	fetch(url, {
 		method: 'POST',
-		body: params
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(cliente)
 	})
 		.then(response => {
 			if (response.ok) {
-				return response.text();
+				return response.json();
 			} else {
 				throw new Error('Error en la solicitud');
 			}
@@ -757,43 +762,43 @@ function crearCliente(event) {
 }
 
 function actualizarCliente(event) {
-    event.preventDefault();
+	event.preventDefault();
 
-    var idCliente = document.getElementById('idClienteActualizar').value;
-    var nombre = document.getElementById('nombreActualizar').value;
-    var apellido = document.getElementById('apellidoActualizar').value;
-    var telefono = document.getElementById('telefonoActualizar').value;
-    var correo = document.getElementById('correoActualizar').value;
-    var cedula = document.getElementById('cedulaActualizar').value;
+	var idCliente = document.getElementById('idClienteActualizar').value;
+	var nombre = document.getElementById('nombreActualizar').value;
+	var apellido = document.getElementById('apellidoActualizar').value;
+	var telefono = document.getElementById('telefonoActualizar').value;
+	var correo = document.getElementById('correoActualizar').value;
+	var cedula = document.getElementById('cedulaActualizar').value;
 
-    var url = 'http://localhost:8081/sql/cliente/' + idCliente;
-    var params = new URLSearchParams();
-    params.append('nombre', nombre);
-    params.append('apellido', apellido);
-    params.append('telefono', telefono);
-    params.append('correo', correo);
-    params.append('cedula', cedula);
+	var url = 'http://localhost:8081/sql/cliente/' + idCliente;
+	var params = new URLSearchParams();
+	params.append('nombre', nombre);
+	params.append('apellido', apellido);
+	params.append('telefono', telefono);
+	params.append('correo', correo);
+	params.append('cedula', cedula);
 
-    fetch(url, {
-        method: 'PUT',
-        body: params
-    })
-        .then(response => {
-            if (response.ok) {
-                return response.text(); // Convertir la respuesta a texto
-            } else {
-                throw new Error('Error al actualizar el cliente');
-            }
-        })
-        .then(data => {
-            alert(data); 
-   
-            resetForms();
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Error al actualizar el cliente');
-        });
+	fetch(url, {
+		method: 'PUT',
+		body: params
+	})
+		.then(response => {
+			if (response.ok) {
+				return response.text(); // Convertir la respuesta a texto
+			} else {
+				throw new Error('Error al actualizar el cliente');
+			}
+		})
+		.then(data => {
+			alert(data);
+
+			resetForms();
+		})
+		.catch(error => {
+			console.error('Error:', error);
+			alert('Error al actualizar el cliente');
+		});
 }
 
 
@@ -823,7 +828,7 @@ function eliminarCliente(event) {
 			console.error('Error:', error);
 			alert('Error al eliminar el cliente');
 		});
-				
+
 }
 
 // Función para crear un examen teorico
