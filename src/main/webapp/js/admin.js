@@ -771,17 +771,21 @@ function actualizarCliente(event) {
 	var correo = document.getElementById('correoActualizar').value;
 	var cedula = document.getElementById('cedulaActualizar').value;
 
-	var url = 'http://localhost:8081/sql/cliente/' + idCliente;
-	var params = new URLSearchParams();
-	params.append('nombre', nombre);
-	params.append('apellido', apellido);
-	params.append('telefono', telefono);
-	params.append('correo', correo);
-	params.append('cedula', cedula);
+	var url = 'http://localhost:8081/cliente/' + idCliente;
+	var data = {
+		nombre: nombre,
+		apellido: apellido,
+		telefono: telefono,
+		correo: correo,
+		cedula: cedula
+	};
 
 	fetch(url, {
 		method: 'PUT',
-		body: params
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(data)
 	})
 		.then(response => {
 			if (response.ok) {
@@ -791,8 +795,7 @@ function actualizarCliente(event) {
 			}
 		})
 		.then(data => {
-			alert(data);
-
+			alert("Actualizado Correctamente ",data);
 			resetForms();
 		})
 		.catch(error => {
@@ -803,12 +806,13 @@ function actualizarCliente(event) {
 
 
 
+
 function eliminarCliente(event) {
 	event.preventDefault();
 
 	var idCliente = document.getElementById('idClienteEliminar').value;
 
-	var url = 'http://localhost:8081/sql/cliente/' + idCliente;
+	var url = 'http://localhost:8081/cliente/' + idCliente;
 
 	fetch(url, {
 		method: 'DELETE'
@@ -821,7 +825,7 @@ function eliminarCliente(event) {
 			}
 		})
 		.then(data => {
-			alert(data);
+			alert("Eliminado Correctamente ",data);
 			resetForms();
 		})
 		.catch(error => {
