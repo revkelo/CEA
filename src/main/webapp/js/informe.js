@@ -3,7 +3,7 @@ window.onload = function() {
 
     document.getElementById('informe1').addEventListener('click', function (e) {
         e.preventDefault();
-        fetchAndGeneratePDF("Informe 1", "http://localhost:8081/cliente");
+        fetchAndGeneratePDF("Informe 1", "http://localhost:8081/clase-teorica");
     });
 
     document.getElementById('informe2').addEventListener('click', function (e) {
