@@ -289,33 +289,33 @@
 							<div class="card">
 								<div class="card-body">
 									<h5 class="card-title">Crear Clase Práctica</h5>
-									<form>
+									<form id="clasePracticaForm">
 										<div class="form-group">
-											<label for="instructorCrear">ID del Instructor</label> <input type="text"
-												class="form-control" id="instructorCrear"
+											<label for="instructorCrear">ID del Instructor</label>
+											<input type="number" class="form-control" id="i"
 												placeholder="Ingrese el ID del instructor">
 										</div>
 										<div class="form-group">
-											<label for="vehiculoCrear">ID del Vehículo</label> <input type="text"
-												class="form-control" id="vehiculoCrear"
-												placeholder="Ingrese el ID del vehículo">
+											<label for="vehiculoCrear">ID del Veh�culo</label>
+											<input type="number" class="form-control" id="v"
+												placeholder="Ingrese el ID del veh�culo">
 										</div>
 										<div class="form-group">
-											<label for="matriculadoCrear">ID del Matriculado</label> <input type="text"
-												class="form-control" id="matriculadoCrear"
+											<label for="matriculadoCrear">ID del Matriculado</label>
+											<input type="number" class="form-control" id="m"
 												placeholder="Ingrese el ID del matriculado">
 										</div>
 										<div class="form-group">
-											<label for="descripcionCrear">Descripción</label> <select
-												class="form-control" id="descripcionCrear">
+											<label for="descripcionCrear">Descripci�n</label>
+											<select class="form-control" id="d">
 												<option value="carretera">Carretera</option>
 												<option value="ciudad">Ciudad</option>
 											</select>
 										</div>
 										<button type="submit" class="btn btn-primary"
-											onclick="crearClasePractica(event)">Crear Clase
-											Práctica</button>
+											onclick="crearClasePractica(event)">Crear Clase Pr�ctica</button>
 									</form>
+
 								</div>
 							</div>
 						</div>
@@ -326,24 +326,24 @@
 									<h5 class="card-title">Actualizar Clase Practica</h5>
 									<form>
 										<div class="form-group">
-											<label for="idClaseActualizar">ID de la Clase</label> <input type="text"
+											<label for="idClaseActualizar">ID de la Clase</label> <input type="number"
 												class="form-control" id="idClaseActualizar"
 												placeholder="Ingrese el ID de la clase a actualizar">
 										</div>
 										<div class="form-group">
 											<label for="instructorActualizar">Nuevo ID del
-												Instructor</label> <input type="text" class="form-control"
+												Instructor</label> <input type="number" class="form-control"
 												id="instructorActualizar"
 												placeholder="Ingrese el nuevo ID del instructor">
 										</div>
 										<div class="form-group">
 											<label for="vehiculoActualizar">Nuevo ID del Vehículo</label>
-											<input type="text" class="form-control" id="vehiculoActualizar"
+											<input type="number" class="form-control" id="vehiculoActualizar"
 												placeholder="Ingrese el nuevo ID del vehículo">
 										</div>
 										<div class="form-group">
 											<label for="matriculadoActualizar">Nuevo ID del
-												Matriculado</label> <input type="text" class="form-control"
+												Matriculado</label> <input type="number" class="form-control"
 												id="matriculadoActualizar"
 												placeholder="Ingrese el nuevo ID del matriculado">
 										</div>
@@ -632,17 +632,17 @@
 									<form id="examenForm">
 										<div class="form-group">
 											<label for="matriculadoCrear">ID del Matriculado</label>
-											<input type="text" class="form-control" id="matriculadoCrear"
+											<input type="number" class="form-control" id="matriculadoCrear"
 												name="ID_matriculado" placeholder="Ingrese el ID del matriculado">
 										</div>
 										<div class="form-group">
 											<label for="instructorCrear">ID del Instructor</label>
-											<input type="text" class="form-control" id="instructorCrear"
+											<input type="number" class="form-control" id="instructorCrear"
 												name="ID_instructor" placeholder="Ingrese el ID del instructor">
 										</div>
 										<div class="form-group">
 											<label for="vehiculoCrear">ID del Veh�culo</label>
-											<input type="text" class="form-control" id="vehiculoCrear"
+											<input type="number" class="form-control" id="vehiculoCrear"
 												name="ID_vehiculo" placeholder="Ingrese el ID del veh�culo">
 										</div>
 										<div class="form-group">
@@ -668,30 +668,30 @@
 									<form>
 										<div class="form-group">
 											<label for="idExamenPracticoActualizar">ID del Examen
-												Practico</label> <input type="text" class="form-control"
+												Practico</label> <input type="number" class="form-control"
 												id="idExamenPracticoActualizar"
 												placeholder="Ingrese el ID del Examen Practico">
 										</div>
 										<div class="form-group">
-											<label for="matriculadoActualizar">Nuevo ID del
-												Matriculado</label> <input type="text" class="form-control"
-												id="matriculadoActualizar"
+											<label for="matriculadoActualizarP">Nuevo ID del
+												Matriculado</label> <input type="number" class="form-control"
+												id="matriculadoActualizarP"
 												placeholder="Ingrese el nuevo ID del matriculado">
 										</div>
 										<div class="form-group">
 											<label for="instructorActualizar">Nuevo ID del
-												Instructor</label> <input type="text" class="form-control"
-												id="instructorActualizar"
+												Instructor</label> <input type="number" class="form-control"
+												id="instructorActualizarP"
 												placeholder="Ingrese el nuevo ID del instructor">
 										</div>
 										<div class="form-group">
 											<label for="vehiculoActualizar">Nuevo ID del Vehículo</label>
-											<input type="text" class="form-control" id="vehiculoActualizar"
+											<input type="number" class="form-control" id="vehiculoActualizarP"
 												placeholder="Ingrese el nuevo ID del vehículo">
 										</div>
 										<div class="form-group">
 											<label for="resultadoCrear">Resultado</label> <select class="form-control"
-												id="resultadoCrear">
+												id="resultadoActualizarP">
 												<option value="aprobado">Aprobado</option>
 												<option value="noAprobado">No Aprobado</option>
 											</select>
@@ -739,7 +739,7 @@
 									<form id="formularioCrearExamenTeorico" onsubmit="crearExamenTeorico(event)">
 										<div class="form-group">
 											<label for="matriculadoCrear">ID del Matriculado</label>
-											<input type="text" class="form-control" id="m"
+											<input type="number" class="form-control" id="matri"
 												placeholder="Ingrese el ID del matriculado">
 										</div>
 										<div class="form-group">
@@ -767,27 +767,22 @@
 												id="idExamenTeoricoActualizar"
 												placeholder="Ingrese el ID del Examen Teorico">
 										</div>
-										<div class="form-group">
-											<label for="instructorActualizar">Nuevo ID del
-												Instructor</label> <input type="text" class="form-control"
-												id="instructorActualizar"
-												placeholder="Ingrese el nuevo ID del instructor">
-										</div>
+									
 										<div class="form-group">
 											<label for="matriculadoActualizar">Nuevo ID del
 												Matriculado</label> <input type="text" class="form-control"
-												id="matriculadoActualizar"
+												id="matriculadoTActualizarT"
 												placeholder="Ingrese el nuevo ID del matriculado">
 										</div>
 										<div class="form-group">
 											<label for="resultadoActualizar">Resultado</label> <select
-												class="form-control" id="resultadoActualizar">
+												class="form-control" id="resultadoTActualizar">
 												<option value="aprobado">Aprobado</option>
 												<option value="noAprobado">No Aprobado</option>
 											</select>
 										</div>
 										<button type="submit" class="btn btn-primary"
-											onclick="actualizarClaseTeorica(event)">Actualizar
+											onclick="actualizarExamenTeorico(event)">Actualizar
 											Clase Teórica</button>
 									</form>
 								</div>
