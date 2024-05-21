@@ -3,12 +3,12 @@ window.onload = function() {
 
     document.getElementById('informe1').addEventListener('click', function (e) {
         e.preventDefault();
-        fetchAndGeneratePDF("Informe 1", "http://localhost:8081/clase-teorica");
+        fetchAndGeneratePDF("Informe 1", "http://localhost:8081/examen-practico-aprobado");
     });
 
     document.getElementById('informe2').addEventListener('click', function (e) {
         e.preventDefault();
-        generatePDF("Informe 2", []);
+        generatePDF("Informe 2", [], []);
     });
 
     function fetchAndGeneratePDF(informe, url) {
@@ -28,16 +28,31 @@ window.onload = function() {
     function generatePDF(informe, headers, data) {
         const doc = new jsPDF();
 
-        // Add table to the PDF
+        // Add logo or image
+        const logo = new Image();
+        logo.src = './img/logo.png'; // Reemplaza con la ruta de tu imagen
+        doc.addImage(logo, 'PNG', 10, 11, 60, 20); // Ajusta la posición y el tamaño según sea necesario
+
+        // Add title
+        doc.setFontSize(18);
+        doc.text(`Informe ${informe}`, 70, 25);
+
+        // Add table to the PDF with customized styles
         doc.autoTable({
-            startY: 20,
+            startY: 40,
             head: headers,
             body: data,
-            theme: 'striped',
+            theme: 'grid', // Cambia el tema a 'grid' para tener una tabla con bordes
+            headStyles: { fillColor: [216, 19, 36] }, // Cambia el color de fondo del encabezado a rojo
+            bodyStyles: { textColor: [50, 50, 50] }, // Cambia el color del texto del cuerpo
+            alternateRowStyles: { fillColor: [240, 240, 240] }, // Cambia el color de fondo de las filas alternas
+            margin: { top: 40 }, // Ajusta el margen
         });
 
         // Add additional text to the PDF
-        doc.text(`Este es el informe ${informe}`, 10, doc.autoTable.previous.finalY + 10);
+        const finalY = doc.autoTable.previous.finalY + 10;
+        doc.setFontSize(12);
+        doc.text(`Este es el informe ${informe}`, 14, finalY);
 
         // Save the PDF to a Blob
         const pdfBlob = doc.output('blob');
@@ -46,9 +61,11 @@ window.onload = function() {
         const pdfUrl = URL.createObjectURL(pdfBlob);
 
         // Open the PDF in a new tab
-        window.open(pdfUrl, '_blank');
+        const newWindow = window.open(pdfUrl, '_blank');
 
-        // Revoke the URL when no longer needed
-        URL.revokeObjectURL(pdfUrl);
+        // Revoke the URL when the new window/tab is closed
+        newWindow.onunload = function () {
+            URL.revokeObjectURL(pdfUrl);
+        };
     }
 }
