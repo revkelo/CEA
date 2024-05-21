@@ -4,75 +4,31 @@ document.getElementById("selectConsulta").addEventListener("change", function ()
     document.getElementById("descripcionConsulta").innerHTML = "<p>" + descripcion + "</p>";
 });
 
-function obtenerDescripcion(consulta) {
-    // Aquí puedes definir las descripciones de cada consulta
-    switch (consulta) {
-        case 1:
-            return "Descripción de la Consulta 1";
-        case 2:
-            return "Descripción de la Consulta 2";
-        case 3:
-            return "Descripción de la Consulta 3";
-        case 4:
-            return "Descripción de la Consulta 4";
-        case 5:
-            return "Descripción de la Consulta 5";
-        case 6:
-            return "Descripción de la Consulta 6";
-        case 7:
-            return "Descripción de la Consulta 7";
-        case 8:
-            return "Descripción de la Consulta 8";
-        case 9:
-            return "Descripción de la Consulta 9";
-        case 10:
-            return "Descripción de la Consulta 10";
-        default:
-            return "No se encontró la descripción de la consulta";
-    }
-}
-
 document.getElementById("btnEnviar").addEventListener("click", function () {
     var seleccion = parseInt(document.getElementById("selectConsulta").value);
     switch (seleccion) {
         case 1:
-            var url = "http://localhost:8081/vehiculo";
-            var titulonombre = "vehiculo";
-            crearPaginaHTML(url, titulonombre);
-            alert("Ejecutar acción para Consulta 1");
+            var url = "consulta1";
+            var titulonombre = "Estudiantes en Categoría";
             break;
         case 2:
-            alert("Ejecutar acción para Consulta 2");
-            break;
         case 3:
-            alert("Ejecutar acción para Consulta 3");
-            break;
         case 4:
-            alert("Ejecutar acción para Consulta 4");
-            break;
         case 5:
-            alert("Ejecutar acción para Consulta 5");
-            break;
         case 6:
-            alert("Ejecutar acción para Consulta 6");
-            break;
         case 7:
-            alert("Ejecutar acción para Consulta 7");
-            break;
         case 8:
-            alert("Ejecutar acción para Consulta 8");
-            break;
         case 9:
-            alert("Ejecutar acción para Consulta 9");
-            break;
         case 10:
-            alert("Ejecutar acción para Consulta 10");
+            var url = "http://localhost:8081/consultas/" + (seleccion);
+            var titulonombre = "Consulta " + (seleccion);
             break;
         default:
             alert("No se seleccionó ninguna consulta");
+            return;
     }
+    crearPaginaHTML(url, titulonombre);
 });
-
 
 function crearPaginaHTML(url, titulonombre) {
     fetch(url)
@@ -101,9 +57,9 @@ function crearPaginaHTML(url, titulonombre) {
             var encabezado = nuevoDocumento.createElement('thead');
             encabezado.classList.add('thead-dark');
             var encabezadoFila = nuevoDocumento.createElement('tr');
-            for (var clave in data[0]) {
+            for (var clave in data.columnNames) {
                 var encabezadoCelda = nuevoDocumento.createElement('th');
-                encabezadoCelda.textContent = clave;
+                encabezadoCelda.textContent = data.columnNames[clave];
                 encabezadoFila.appendChild(encabezadoCelda);
             }
             encabezado.appendChild(encabezadoFila);
@@ -111,7 +67,7 @@ function crearPaginaHTML(url, titulonombre) {
 
             // Crear el cuerpo de la tabla
             var cuerpoTabla = nuevoDocumento.createElement('tbody');
-            data.forEach(function (filaDatos) {
+            data.data.forEach(function (filaDatos) {
                 var fila = nuevoDocumento.createElement('tr');
                 for (var clave in filaDatos) {
                     var celda = nuevoDocumento.createElement('td');
@@ -136,4 +92,32 @@ function crearPaginaHTML(url, titulonombre) {
             // Abrir la nueva página en una nueva pestaña
             window.open(enlaceDescarga.href, '_blank');
         });
+}
+
+function obtenerDescripcion(consulta) {
+    // Aquí puedes definir las descripciones de cada consulta
+    switch (consulta) {
+        case 1:
+            return "Lista de estudiantes en categoría A1";
+        case 2:
+            return "Descripción de la Consulta 2";
+        case 3:
+            return "Descripción de la Consulta 3";
+        case 4:
+            return "Descripción de la Consulta 4";
+        case 5:
+            return "Descripción de la Consulta 5";
+        case 6:
+            return "Descripción de la Consulta 6";
+        case 7:
+            return "Descripción de la Consulta 7";
+        case 8:
+            return "Descripción de la Consulta 8";
+        case 9:
+            return "Descripción de la Consulta 9";
+        case 10:
+            return "Descripción de la Consulta 10";
+        default:
+            return "No se encontró la descripción de la consulta";
+    }
 }

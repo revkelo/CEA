@@ -542,7 +542,7 @@ function eliminarExamenPractico(event) {
 
 	var idExamen = document.getElementById('idExamenEliminar').value;
 
-	var url = 'http://localhost:8081/examenes-practicos/' + idExamen;
+	var url = 'http://localhost:8081/examen-practico/' + idExamen;
 
 	fetch(url, {
 		method: 'DELETE'
@@ -742,7 +742,9 @@ function eliminarMatriculado(event) {
 
 	var idMatriculado = document.getElementById('idMatriculadoEliminar').value;
 
+	
 	var url = 'http://localhost:8081/matriculados/' + idMatriculado;
+	console.log('ID del Matriculado:', idMatriculado);
 
 	fetch(url, {
 		method: 'DELETE'
@@ -759,6 +761,8 @@ function eliminarMatriculado(event) {
 			alert('Error al eliminar el matriculado');
 		});
 }
+
+
 function crearCliente(event) {
 	event.preventDefault();
 
@@ -963,9 +967,9 @@ function actualizarExamenTeorico(event) {
 function eliminarExamenTeorico(event) {
 	event.preventDefault();
 
-	var idExamen = document.getElementById('idExamenEliminar').value;
+	var idExamen = document.getElementById('idExamenTEliminar').value;
 
-	var url = 'http://localhost:8081/examenes-practicos/' + idExamen;
+	var url = 'http://localhost:8081/examen-teorico/' + idExamen;
 
 	fetch(url, {
 		method: 'DELETE'
