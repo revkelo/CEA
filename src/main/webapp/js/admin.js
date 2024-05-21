@@ -240,9 +240,9 @@ function eliminarClasePractica(event) {
 function crearClaseTeorica(event) {
     event.preventDefault();
 
-    var instructorId = document.getElementById('instructorCrear').value;
-    var matriculadoId = document.getElementById('matriculadoCrear').value;
-    var descripcion = document.getElementById('descripcionCrear').value;
+    var instructorId = document.getElementById('instructorTCrear').value;
+    var matriculadoId = document.getElementById('matriculadoTCrear').value;
+    var descripcion = document.getElementById('descripcionTCrear').value;
 
     var url = 'http://localhost:8081/claseteorica/Agregar';
     var params = 'ID_instructor=' + encodeURIComponent(instructorId) +
