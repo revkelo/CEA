@@ -8,8 +8,8 @@ document.getElementById("btnEnviar").addEventListener("click", function () {
     var seleccion = parseInt(document.getElementById("selectConsulta").value);
     var url = "http://localhost:8081/consultas/" + seleccion;
     var titulonombre = "Consulta " + seleccion;
- 
-    
+
+
     crearPaginaHTML(url, titulonombre);
 });
 
@@ -83,23 +83,23 @@ function obtenerDescripcion(consulta) {
         case 1:
             return "Lista de estudiantes en categoría A1";
         case 2:
-            return "Descripción de la Consulta 2";
+            return "Listar los exámenes teóricos realizados por el matriculado con id 1";
         case 3:
-            return "Descripción de la Consulta 3";
+            return "Obtener los detalles de las clases teóricas del matriculado con id 1";
         case 4:
-            return "Descripción de la Consulta 4";
+            return "Obtener los detalles del instructor con id 1 y sus clases prácticas";
         case 5:
-            return "Descripción de la Consulta 5";
+            return "Listar los resultados de los exámenes prácticos del matriculado con id 1";
         case 6:
-            return "Descripción de la Consulta 6";
+            return "Obtener las clases prácticas que se impartieron con el vehículo con id 4";
         case 7:
-            return "Descripción de la Consulta 7";
+            return "Obtener los exámenes prácticos realizados con un instructor con id 3";
         case 8:
-            return "Descripción de la Consulta 8";
+            return "Obtener los matriculados que han aprobado el examen teórico";
         case 9:
-            return "Descripción de la Consulta 9";
+            return "Obtener la lista de exámenes teoricos junto con los resultados";
         case 10:
-            return "Descripción de la Consulta 10";
+            return "Obtener la lista de exámenes prácticos junto con los resultados y detalles del vehículo utilizado";
         default:
             return "No se encontró la descripción de la consulta";
     }
