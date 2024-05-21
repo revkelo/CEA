@@ -237,99 +237,6 @@ function eliminarClasePractica(event) {
 		});
 }
 
-function crearClaseTeorica(event) {
-    event.preventDefault();
-
-    var instructorId = document.getElementById('instructorTCrear').value;
-    var matriculadoId = document.getElementById('matriculadoTCrear').value;
-    var descripcion = document.getElementById('descripcionTCrear').value;
-
-    var url = 'http://localhost:8081/claseteorica/Agregar';
-    var params = 'ID_instructor=' + encodeURIComponent(instructorId) +
-                 '&ID_matriculado=' + encodeURIComponent(matriculadoId) +
-                 '&descripcion=' + encodeURIComponent(descripcion);
-
-    fetch(url, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: params,
-        mode: 'no-cors'
-    })
-    .then(response => {
-        if (response.ok) {
-            alert('Clase teórica creada exitosamente');
-            resetForms();
-        } else {
-            throw new Error('Error al crear la clase teórica');
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('Error al crear la clase teórica');
-    });
-}
-
-function actualizarClaseTeorica(event) {
-    event.preventDefault();
-
-    var claseId = document.getElementById('idClaseTActualizar').value;
-    var instructorId = document.getElementById('instructorTActualizar').value;
-    var matriculadoId = document.getElementById('matriculadoTActualizar').value;
-    var vehiculoID = document.getElementById('VehiculoAclaseT').value;
-    var descripcion = document.getElementById('descripcionActualizar').value;
-
-    var url = 'http://localhost:8081/clase-teorica/' + claseId;
-    var params = 'ID_instructor=' + encodeURIComponent(instructorId) +
-                 '&ID_matriculado=' + encodeURIComponent(matriculadoId) +
-                 '&vehiculoID=' + encodeURIComponent(vehiculoID) +
-                 '&descripcion=' + encodeURIComponent(descripcion);
-
-    fetch(url, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: params
-    })
-    .then(response => {
-        if (response.ok) {
-            alert('Clase teórica actualizada exitosamente');
-            resetForms();
-        } else {
-            throw new Error('Error al actualizar la clase teórica');
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('Error al actualizar la clase teórica');
-    });
-}
-
-function eliminarClaseTeorica(event) {
-	event.preventDefault();
-
-	var claseId = document.getElementById('idClaseEliminar').value;
-
-	var url = 'http://localhost:8081/clase-teorica/' + claseId;
-
-	fetch(url, {
-		method: 'DELETE'
-	})
-		.then(response => {
-			if (response.ok) {
-				alert('Clase teórica eliminada exitosamente');
-				resetForms();
-			} else {
-				throw new Error('Error al eliminar la clase teórica');
-			}
-		})
-		.catch(error => {
-			console.error('Error:', error);
-			alert('Error al eliminar la clase teórica');
-		});
-}
 
 
 
@@ -654,88 +561,81 @@ function eliminarExamenPractico(event) {
 		});
 }
 
-// Función para crear una clase teórica
 function crearClaseTeorica(event) {
-	event.preventDefault();
+    event.preventDefault();
 
-	var instructor = document.getElementById('instructorCrear').value;
-	var matriculado = document.getElementById('matriculadoCrear').value;
-	var descripcion = document.getElementById('descripcionCrear').value;
+    var instructor = document.getElementById('instructorTCrear').value;
+    var matriculado = document.getElementById('matriculadoTCrear').value;
+    var descripcion = document.getElementById('descripcionTCrear').value;
 
-	var url = 'http://localhost:8081/clases-teorica/agregar';
-	var params = {
-		instructor: instructor,
-		matriculado: matriculado,
-		descripcion: descripcion
-	};
 
-	fetch(url, {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify(params)
-	})
-		.then(response => {
-			if (response.ok) {
-				alert('Clase teórica creada exitosamente');
-				resetForms();
-			} else {
-				throw new Error('Error al crear la clase teórica');
-			}
-		})
-		.catch(error => {
-			console.error('Error:', error);
-			alert('Error al crear la clase teórica');
-		});
+    var url = 'http://localhost:8081/claseteorica/Agregar';
+    var params = 'ID_instructor=' + encodeURIComponent(instructor) +
+                 '&ID_matriculado=' + encodeURIComponent(matriculado) +
+                 '&Descripcion=' + encodeURIComponent(descripcion);
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: params
+    })
+    .then(response => {
+        if (response.ok) {
+            alert('Clase teórica creada exitosamente');
+            resetForms();
+        } else {
+            throw new Error('Error al crear la clase teórica');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Error al crear la clase teórica');
+    });
 }
 
-
-
-// Función para actualizar una clase teórica
 function actualizarClaseTeorica(event) {
-	event.preventDefault();
+    event.preventDefault();
 
-	var idClase = document.getElementById('idClaseActualizar').value;
-	var instructor = document.getElementById('instructorActualizar').value;
-	var matriculado = document.getElementById('matriculadoActualizar').value;
-	var descripcion = document.getElementById('descripcionActualizar').value;
+    var idClase = document.getElementById('idClaseTActualizar').value;
+    var instructor = document.getElementById('instructorTActualizar').value;
+    var matriculado = document.getElementById('matriculadoTActualizar').value;
+    var descripcion = document.getElementById('descripcionTActualizar').value;
 
-	var url = 'http://localhost:8081/clases-teoricas/' + idClase;
-	var data = {
-		instructor: instructor,
-		matriculado: matriculado,
-		descripcion: descripcion
-	};
+    var url = 'http://localhost:8081/claseteorica/' + idClase;
+    var params = 'id=' + encodeURIComponent(idClase) +
+				 '&ID_instructor=' + encodeURIComponent(instructor) +
+                 '&ID_matriculado=' + encodeURIComponent(matriculado) +
+                 '&Descripcion=' + encodeURIComponent(descripcion);
 
-	fetch(url, {
-		method: 'PUT',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify(data)
-	})
-		.then(response => {
-			if (response.ok) {
-				alert('Clase teórica actualizada exitosamente'); resetForms();
-				resetForms();
-			} else {
-				throw new Error('Error al actualizar la clase teórica');
-			}
-		})
-		.catch(error => {
-			console.error('Error:', error);
-			alert('Error al actualizar la clase teórica');
-		});
+    fetch(url, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: params
+    })
+    .then(response => {
+        if (response.ok) {
+            alert('Clase teórica actualizada exitosamente');
+            resetForms();
+        } else {
+            throw new Error('Error al actualizar la clase teórica');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Error al actualizar la clase teórica');
+    });
 }
-
 // Función para eliminar una clase teórica
 function eliminarClaseTeorica(event) {
 	event.preventDefault();
 
-	var idClase = document.getElementById('idClaseEliminar').value;
+	var idClase = document.getElementById('idClaseTEliminar').value;
 
-	var url = 'http://localhost:8081/clases-teoricas/' + idClase;
+	var url = 'http://localhost:8081/claseteorica/' + idClase;
 
 	fetch(url, {
 		method: 'DELETE'
