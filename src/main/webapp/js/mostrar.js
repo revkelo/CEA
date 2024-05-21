@@ -5,9 +5,8 @@ document.addEventListener("DOMContentLoaded", function() {
 	botonListar.addEventListener("click", function() {
 		const tipoDatos = document.getElementById("tipo-datos").value;
 		let url = "";
-
 		let cardTitle = document.getElementById('card-title');
-
+		console.log(tipoDatos);
 		if (tipoDatos === "cliente") {
 			url = "http://localhost:8081/cliente";
 			cardTitle.textContent = "Cliente";
@@ -17,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		} else if (tipoDatos === "clase-practica") {
 			url = "http://localhost:8081/clase-practica";
 			cardTitle.textContent = "Clase Práctica";
-		}else if (tipoDatos === "clase-teorica") {
+		} else if (tipoDatos === "clase-teorica") {
 			url = "http://localhost:8081/clase-teorica";
 			cardTitle.textContent = "Clase Teorica";
 		} else if (tipoDatos === "vehiculos") {
