@@ -17,6 +17,9 @@ document.addEventListener("DOMContentLoaded", function() {
 		} else if (tipoDatos === "clase-practica") {
 			url = "http://localhost:8081/clase-practica";
 			cardTitle.textContent = "Clase Práctica";
+		}else if (tipoDatos === "clase-teorica") {
+			url = "http://localhost:8081/clase-teorica";
+			cardTitle.textContent = "Clase Teorica";
 		} else if (tipoDatos === "vehiculos") {
 			url = "http://localhost:8081/vehiculo";
 			cardTitle.textContent = "Vehículos";
