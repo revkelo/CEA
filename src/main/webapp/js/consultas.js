@@ -6,27 +6,10 @@ document.getElementById("selectConsulta").addEventListener("change", function ()
 
 document.getElementById("btnEnviar").addEventListener("click", function () {
     var seleccion = parseInt(document.getElementById("selectConsulta").value);
-    switch (seleccion) {
-        case 1:
-            var url = "consulta1";
-            var titulonombre = "Estudiantes en Categoría";
-            break;
-        case 2:
-        case 3:
-        case 4:
-        case 5:
-        case 6:
-        case 7:
-        case 8:
-        case 9:
-        case 10:
-            var url = "http://localhost:8081/consultas/" + (seleccion);
-            var titulonombre = "Consulta " + (seleccion);
-            break;
-        default:
-            alert("No se seleccionó ninguna consulta");
-            return;
-    }
+    var url = "http://localhost:8081/consultas/" + seleccion;
+    var titulonombre = "Consulta " + seleccion;
+ 
+    
     crearPaginaHTML(url, titulonombre);
 });
 
