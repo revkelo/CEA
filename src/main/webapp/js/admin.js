@@ -128,8 +128,8 @@ function crearClasePractica(event) {
 	event.preventDefault();
 
 	var instructorId = document.getElementById('i').value;
-	var vehiculoId = document.getElementById('v').value;
 	var matriculadoId = document.getElementById('m').value;
+	var vehiculoId = document.getElementById('v').value;
 	var descripcion = document.getElementById('d').value; // Esto ya es una cadena
 
 	var formData = new FormData();
