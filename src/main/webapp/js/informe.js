@@ -3,54 +3,66 @@ window.onload = function() {
 
     document.getElementById('informe1').addEventListener('click', function (e) {
         e.preventDefault();
-        fetchAndGeneratePDFaprobado("Informe Aprobado", "http://localhost:8081/examen-practico-aprobado");
+        fetchAndGeneratePDF("Informe Aprobado", "http://localhost:8081/examen-practico-aprobado", "http://localhost:8081/cliente","http://localhost:8081/matriculados", 'aprobado');
     });
-
+    
     document.getElementById('informe2').addEventListener('click', function (e) {
         e.preventDefault();
-        fetchAndGeneratePDFreprobado("Informe Reprobado", "http://localhost:8081/examen-practico-reprobado");
+        fetchAndGeneratePDF("Informe Reprobado", "http://localhost:8081/examen-practico-reprobado", "http://localhost:8081/cliente", 'reprobado');
     });
-
-    function fetchAndGeneratePDFaprobado(informe, url) {
-        fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                // Transform data into a format suitable for jsPDF-AutoTable
-                const tableHeaders = [Object.keys(data[0])]; // Get column headers from the keys of the first object
-                const tableData = data.map(item => Object.values(item)); // Get values for each row
-                generatePDFaprobado(informe, tableHeaders, tableData);
+    
+        function fetchAndGeneratePDF(informe, dataUrl, clientesUrl, matriculadoUrl, tipoInforme) {
+            Promise.all([
+                fetch(dataUrl).then(response => response.json()),
+                fetch(clientesUrl).then(response => response.json())
+            ])
+            .then(([data, clientes]) => {
+                fetch(matriculadoUrl)
+                .then(response => response.json())
+                .then(matriculados => {
+                    // Combina los datos con los nombres basados en id_matriculado y id_cliente
+                    const combinedData = data.map(item => {
+                        const matriculado = matriculados.find(matriculado => matriculado.id_matriculado === item.id_matriculado);
+                        const cliente = clientes.find(cliente => cliente.id_cliente === matriculado.id_cliente);
+                        return {
+                            ...item,
+                            nombre_cliente: cliente ? cliente.nombre : "Nombre no disponible"
+                        };
+                    });
+        
+                    // Transforma los datos en un formato adecuado para jsPDF-AutoTable
+                    const tableHeaders = [Object.keys(combinedData[0])]; // Obtiene los encabezados de columna de las claves del primer objeto
+                    const tableData = combinedData.map(item => Object.values(item)); // Obtiene los valores para cada fila
+        
+                    // Genera el PDF con los datos combinados
+                    if (tipoInforme === 'aprobado') {
+                        generatePDF(informe, tableHeaders, tableData, 'aprobado');
+                    } else {
+                        generatePDF(informe, tableHeaders, tableData, 'reprobado');
+                    }
+                })
+                .catch(error => {
+                    console.error("Error fetching matriculados:", error);
+                });
             })
             .catch(error => {
                 console.error("Error fetching data:", error);
             });
-    }
-
-    function fetchAndGeneratePDFreprobado(informe, url) {
-        fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                // Transform data into a format suitable for jsPDF-AutoTable
-                const tableHeaders = [Object.keys(data[0])]; // Get column headers from the keys of the first object
-                const tableData = data.map(item => Object.values(item)); // Get values for each row
-                generatePDFreprobado(informe, tableHeaders, tableData);
-            })
-            .catch(error => {
-                console.error("Error fetching data:", error);
-            });
-    }
-    function generatePDFaprobado(informe, headers, data) {
+        }
+    
+    function generatePDF(informe, headers, data, tipoInforme) {
         const doc = new jsPDF();
-
-        // Add logo or image
+    
+        // Añade el logo o imagen
         const logo = new Image();
         logo.src = './img/logo.png'; // Reemplaza con la ruta de tu imagen
         doc.addImage(logo, 'PNG', 10, 11, 60, 20); // Ajusta la posición y el tamaño según sea necesario
-
-        // Add title
+    
+        // Añade el título
         doc.setFontSize(18);
         doc.text(`Este es el ${informe}`, 70, 40);
-
-        // Add table to the PDF with customized styles
+    
+        // Añade la tabla al PDF con estilos personalizados
         doc.autoTable({
             startY: 50,
             head: headers,
@@ -61,66 +73,26 @@ window.onload = function() {
             alternateRowStyles: { fillColor: [240, 240, 240] }, // Cambia el color de fondo de las filas alternas
             margin: { top: 40 }, // Ajusta el margen
         });
-
-        // Add additional text to the PDF
+    
+        // Añade texto adicional al PDF
         const finalY = doc.autoTable.previous.finalY + 10;
         doc.setFontSize(12);
-        doc.text(`En este informe se muestran las personas matriculadas que \nhan realizado el curso pero han aprobado el examen practico`, 14, finalY);
-
-        // Save the PDF to a Blob
+        if (tipoInforme === 'aprobado') {
+            doc.text(`En este informe se muestran las personas matriculadas que \nhan realizado el curso y han aprobado el examen practico`, 14, finalY);
+        } else {
+            doc.text(`En este informe se muestran las personas matriculadas que \nhan realizado el curso y han reprobado el examen practico`, 14, finalY);
+        }
+    
+        // Guarda el PDF en un Blob
         const pdfBlob = doc.output('blob');
-
-        // Create a URL for the Blob
+    
+        // Crea una URL para el Blob
         const pdfUrl = URL.createObjectURL(pdfBlob);
-
-        // Open the PDF in a new tab
+    
+        // Abre el PDF en una nueva pestaña
         const newWindow = window.open(pdfUrl, '_blank');
-
-        // Revoke the URL when the new window/tab is closed
-        newWindow.onunload = function () {
-            URL.revokeObjectURL(pdfUrl);
-        };
-    }
-
-    function generatePDFreprobado(informe, headers, data) {
-        const doc = new jsPDF();
-
-        // Add logo or image
-        const logo = new Image();
-        logo.src = './img/logo.png'; // Reemplaza con la ruta de tu imagen
-        doc.addImage(logo, 'PNG', 10, 11, 60, 20); // Ajusta la posición y el tamaño según sea necesario
-
-        // Add title
-        doc.setFontSize(18);
-        doc.text(`Este es el ${informe}`, 70, 40);
-
-        // Add table to the PDF with customized styles
-        doc.autoTable({
-            startY: 50,
-            head: headers,
-            body: data,
-            theme: 'grid', // Cambia el tema a 'grid' para tener una tabla con bordes
-            headStyles: { fillColor: [216, 19, 36] }, // Cambia el color de fondo del encabezado a rojo
-            bodyStyles: { textColor: [50, 50, 50] }, // Cambia el color del texto del cuerpo
-            alternateRowStyles: { fillColor: [240, 240, 240] }, // Cambia el color de fondo de las filas alternas
-            margin: { top: 40 }, // Ajusta el margen
-        });
-
-        // Add additional text to the PDF
-        const finalY = doc.autoTable.previous.finalY + 10;
-        doc.setFontSize(12);
-        doc.text(`En este informe se muestran las personas matriculadas que \nhan realizado el curso pero han reprobado el examen practico`, 14, finalY);
-
-        // Save the PDF to a Blob
-        const pdfBlob = doc.output('blob');
-
-        // Create a URL for the Blob
-        const pdfUrl = URL.createObjectURL(pdfBlob);
-
-        // Open the PDF in a new tab
-        const newWindow = window.open(pdfUrl, '_blank');
-
-        // Revoke the URL when the new window/tab is closed
+    
+        // Revoca la URL cuando la nueva ventana/pestaña se cierra
         newWindow.onunload = function () {
             URL.revokeObjectURL(pdfUrl);
         };
