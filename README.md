@@ -1,42 +1,38 @@
+> **⚠️ LEGACY — Este proyecto fue reemplazado por [CEA-Serverless](https://github.com/revkelo/CEA-Serverless) (AWS Lambda + DynamoDB + API Gateway).**
 
-# CEA
+# CEA Instituto de Movilidad — Sistema Web v1 (Legacy)
 
-Proyecto relacionado con [CEA](https://github.com/revkelo/CEA), diseñado para proporcionar soluciones integrales en un contexto específico.
+Sistema de gestión académica para el **CEA Instituto de Movilidad** (escuela de conducción). Esta es la versión original monolítica, desarrollada con Java Servlets y HTML/CSS/JS vanilla.
+
+El backend REST correspondiente a esta versión vive en [BackCEA](https://github.com/revkelo/BackCEA).
+
+## Stack
+
+- **Frontend:** HTML5, CSS3, JavaScript, Bootstrap
+- **Backend:** Java 17, Jakarta Servlet 6.0, Maven (WAR)
+- **Bases de datos:** MySQL (MariaDB) · Oracle DB
+- **Servidor:** Apache Tomcat
+
+## Módulos
+
+- `index.html` — Página principal / landing
+- `login.html` — Autenticación de usuarios
+- `admin.html` — Panel de administración
+- `consultas.js` — Consultas a la API REST (BackCEA)
+- `informe.js` — Generación de informes
 
 ## Instalación
 
-1. Clona el repositorio:
+```bash
+git clone https://github.com/revkelo/CEA.git
+cd CEA
+mvn clean package
+# Desplegar el .war generado en Tomcat
+```
 
-   ```bash
-   git clone https://github.com/revkelo/CEA.git
-   cd CEA
-   ```
+Requiere una instancia de MySQL/Oracle activa y el backend [BackCEA](https://github.com/revkelo/BackCEA) corriendo en `localhost:8080`.
 
-2. Instala las dependencias:
+## Versión actual
 
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-## Uso
-
-1. Ejecuta la aplicación:
-
-   ```bash
-   python main.py
-   ```
-
-2. La aplicación estará lista para su uso.
-
-## Contribuciones
-
-Las contribuciones son bienvenidas. Si deseas colaborar, por favor sigue estos pasos:
-
-1. Haz un fork del repositorio.
-2. Crea una nueva rama para tu característica o corrección de error.
-3. Realiza tus cambios y haz commit.
-4. Envía un pull request describiendo tus cambios.
-
-## Licencia
-
-Este proyecto está bajo la Licencia GPL-3.0. Consulta el archivo `LICENSE` para más detalles.
+Para la versión activa y en producción del proyecto CEA, ver:
+**[CEA-Serverless](https://github.com/revkelo/CEA-Serverless)** — arquitectura serverless en AWS (Lambda · API Gateway · DynamoDB · S3).
