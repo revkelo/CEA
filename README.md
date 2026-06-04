@@ -1,8 +1,8 @@
 > **⚠️ LEGACY — Este proyecto fue reemplazado por [CEA-Serverless](https://github.com/revkelo/CEA-Serverless) (AWS Lambda + DynamoDB + API Gateway).**
 
-# CEA Instituto de Movilidad — Sistema Web v1 (Legacy)
+# CEA Instituto de Movilidad — Frontend Web v1 (Legacy)
 
-Sistema de gestión académica para el **CEA Instituto de Movilidad** (escuela de conducción). Esta es la versión original monolítica, desarrollada con Java Servlets y HTML/CSS/JS vanilla.
+**Frontend** del sistema de gestión académica para el **CEA Instituto de Movilidad** (escuela de conducción). Esta es la capa de presentación original, desarrollada con HTML/CSS/JS vanilla y desplegada como WAR sobre Tomcat. El backend correspondiente está en [BackCEA](https://github.com/revkelo/BackCEA).
 
 El backend REST correspondiente a esta versión vive en [BackCEA](https://github.com/revkelo/BackCEA).
 
